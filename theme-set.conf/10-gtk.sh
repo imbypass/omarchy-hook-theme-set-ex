@@ -45,7 +45,7 @@ create_dynamic_theme() {
     bright_cyan=$(extract_from_section "colors.bright" "cyan")
     bright_white=$(extract_from_section "colors.bright" "white")
 
-    echo " --> Copying GTK Theme to $gtk3_file"
+    echo "   --> Copying GTK Theme to $gtk3_file"
     cat > "$output_file" << EOF
     @define-color background     ${background};
     @define-color foreground     ${foreground};
@@ -220,14 +220,14 @@ if [ -f "$new_gtk_file" ]; then
 
     echo " :: Copying new theme to $gtk3_file"
     if [ ! -f "$gtk3_backup_file" ]; then
-        echo " --> No backup found! Backing up.."
+        echo "   --> No backup found! Backing up.."
         cp "$gtk3_file" "$gtk3_backup_file"
     fi
     cp -f "$new_gtk_file" "$gtk3_file"
 
     echo " :: Copying new theme to $gtk4_file"
     if [ ! -f "$gtk4_backup_file" ]; then
-        echo " --> No backup found! Backing up.."
+        echo "   --> No backup found! Backing up.."
         cp "$gtk4_file" "$gtk4_backup_file"
     fi
     cp -f "$new_gtk_file" "$gtk4_file"
@@ -235,10 +235,11 @@ if [ -f "$new_gtk_file" ]; then
 else
     echo " :: No GTK theme found! Generating new GTK3 theme.."
     create_dynamic_theme
-    echo " --> Copying theme to $gtk4_file"
+    echo "   --> Copying theme to $gtk4_file"
     cp $output_file $gtk4_file
-    nautilus -q > /dev/null 2>&1
-    pkill nautilus > /dev/null 2>&1
-    echo "GTK theme updated!"
-
 fi
+
+nautilus -q > /dev/null 2>&1
+pkill nautilus > /dev/null 2>&1
+
+echo "GTK theme updated!"
