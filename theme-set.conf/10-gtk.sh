@@ -4,10 +4,15 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/gtk-3.0/gtk.css"
 
 new_gtk_file="$HOME/.config/omarchy/current/theme/gtk.css"
-gtk3_file="$HOME/.config/gtk-3.0/gtk.css"
-gtk3_backup_file="$HOME/.config/gtk-3.0/gtk.css.backup"
-gtk4_file="$HOME/.config/gtk-4.0/gtk.css"
-gtk4_backup_file="$HOME/.config/gtk-4.0/gtk.css.backup"
+
+gtk3_dir="$HOME/.config/gtk-3.0"
+gtk4_dir="$HOME/.config/gtk-4.0"
+
+gtk3_file="$gtk3_dir/gtk.css"
+gtk4_file="$gtk4_dir/gtk.css"
+
+gtk3_backup_file="$gtk3_dir/gtk.css.backup"
+gtk4_backup_file="$gtk4_dir/gtk.css.backup"
 
 extract_from_section() {
     local section="$1"
@@ -215,12 +220,14 @@ create_dynamic_theme() {
 EOF
 }
 
+
 if [ ! -d "$gtk3_dir" ]; then
     mkdir -p "$gtk3_dir"
 fi
 if [ ! -d "$gtk4_dir" ]; then
     mkdir -p "$gtk4_dir"
 fi
+
 if [ -f "$new_gtk_file" ]; then
 
     if [ ! -f "$gtk3_backup_file" ]; then
