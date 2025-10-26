@@ -28,7 +28,6 @@ extract_from_section() {
 }
 
 create_dynamic_theme() {
-    printf "\033[0;90m :: No existing theme found! Creating new theme..\n"
     color00=$(extract_from_section "colors.primary" "background")
     color01=$(extract_from_section "colors.normal" "black")
     color02=$(extract_from_section "colors.bright" "black")
