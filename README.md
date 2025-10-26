@@ -3,14 +3,16 @@
 I couldn't come up with a cleaner way to share this, so we get a GitHub repo.
 Copy these files to `~/.config/omarchy/hooks/` and make sure they are executable (chmod +x)
 
+
+## Requirements
+Each of these scripts will have optional requirements that are needed in order to run properly. These requirements are listed below:
+- Vesktop / Equibop / Vencord / Equicord *(if your client supports theming and isn't listed, please open an issue to get it added.)*
+- Spicetify is needed to theme Spotify. *(Make sure this is installed before trying to use this.)*
+
 These scripts will check your Omarchy theme for the existence of:
 - Discord theme
 - GTK theme
-- Foot Terminal theme
 
 If they *do* exist, they will be copied to their proper folders, otherwise a new set of each will be
 generated dynamically using the theme's Alacritty config and copied to their proper folders.
-
-This can also be extended further as well, just drop any scripts you want executed into `theme-set.conf`
-and they will get executed when `theme-set` is executed. In my personal setup, I have a Firefox theme
-and my keyboard RGB lights set to change as well.
+This has also been extended for apps like Spotify, where we dynamically create a theme for any Omarchy theme.
