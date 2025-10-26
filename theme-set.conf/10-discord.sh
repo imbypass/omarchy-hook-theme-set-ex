@@ -28,7 +28,7 @@ extract_from_section() {
 }
 
 create_dynamic_theme() {
-    echo " :: No existing theme found! Creating new theme.."
+    printf "\033[0;90m :: No existing theme found! Creating new theme..\n"
     color00=$(extract_from_section "colors.primary" "background")
     color01=$(extract_from_section "colors.normal" "black")
     color02=$(extract_from_section "colors.bright" "black")
@@ -79,17 +79,13 @@ EOF
 
     for path in "${possible_paths[@]}"; do
         if [ -d "$path" ]; then
-            echo "   --> Found Discord installation at $path"
 
             if [[ -f "$path/themes/vencord.theme.css" ]]; then
-                echo "   --> Removing existing theme"
                 rm "$path/themes/vencord.theme.css"
             fi
 
-            echo "   --> Copying new theme to $path/themes/vencord.theme.css"
             cp "$output_file" "$path/themes/vencord.theme.css"
 
-            echo "   --> Updating Discord theme files"
             for file in "$path"/themes/*; do
                 if [ -f "$file" ]; then
                     touch "$file"
@@ -102,15 +98,11 @@ EOF
 
 check_for_theme() {
     if [[ -f $HOME/.config/omarchy/current/theme/vencord.theme.css ]]; then
-        echo " :: Existing Vencord theme found! Copying to Discord installations.."
         for path in "${possible_paths[@]}"; do
             if [ -d "$path/themes" ]; then
-                echo "   --> Found Discord installation at $path"
                 if [[ -f "$path/themes/vencord.theme.css" ]]; then
-                    echo "   --> Removing existing theme ($path/themes/vencord.theme.css)"
                     rm "$path/themes/vencord.theme.css"
                 fi
-                echo "   --> Copying new theme to $path/themes/vencord.theme.css"
                 cp -f $HOME/.config/omarchy/current/theme/vencord.theme.css "$path/themes/vencord.theme.css"
             fi
 
@@ -127,4 +119,4 @@ check_for_theme() {
 
 check_for_theme
 
-echo "Discord theme updated!"
+printf "\033[0;32m[SUCCESS]\033[0;37m Discord theme updated!\n"
