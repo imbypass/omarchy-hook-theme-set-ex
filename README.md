@@ -1,8 +1,14 @@
 # Extending Omarchy Theme Set Hook
 
 I couldn't come up with a cleaner way to share this, so we get a GitHub repo.
-Copy these files to `~/.config/omarchy/hooks/` and make sure they are executable (chmod +x)
 
+## Installation
+Run the following command to install the hook extension:
+```
+git clone https://github.com/imbypass/omarchy-hook-theme-set-ex.git /tmp/theme-hook && \
+mv /tmp/theme-hook/* ~/.config/omarchy/hooks/ && \
+rm -rf /tmp/theme-hook
+```
 
 ## Requirements
 Each of these scripts will have optional requirements that are needed in order to run properly. These requirements are listed below:
