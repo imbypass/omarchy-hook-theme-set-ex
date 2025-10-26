@@ -215,6 +215,12 @@ create_dynamic_theme() {
 EOF
 }
 
+if [ ! -d "$gtk3_dir" ]; then
+    mkdir -p "$gtk3_dir"
+fi
+if [ ! -d "$gtk4_dir" ]; then
+    mkdir -p "$gtk4_dir"
+fi
 if [ -f "$new_gtk_file" ]; then
 
     if [ ! -f "$gtk3_backup_file" ]; then
