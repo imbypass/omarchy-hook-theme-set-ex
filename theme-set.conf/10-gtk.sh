@@ -245,7 +245,8 @@ else
     cp $output_file $gtk4_file
 fi
 
-printf "\033[0;32m[SUCCESS]\033[0;37m GTK theme updated!\n"
-
 nautilus -q > /dev/null 2>&1
 pkill nautilus > /dev/null 2>&1
+
+printf "\033[0;32m[SUCCESS]\033[0;37m GTK theme updated!\n"
+exit 0
