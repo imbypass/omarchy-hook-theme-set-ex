@@ -18,8 +18,9 @@ extract_from_section() {
         $0 == section { in_section=1; next }
         /^\[/ { in_section=0 }
         in_section && $1 == color {
-            if (match($0, /#[0-9a-fA-F]{6}/)) {
-                print substr($0, RSTART, RLENGTH)
+            if (match($0, /(#|0x)[0-9a-fA-F]{6}/)) {
+                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
+                print "#" hex_part
                 exit
             }
         }
