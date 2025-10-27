@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-output_file="/tmp/vencord.theme.css"
+output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 possible_paths=(
     "$HOME/.config/Vencord"
     "$HOME/.config/vesktop"
@@ -92,7 +92,6 @@ EOF
             done
         fi
     done
-    rm "$output_file"
 }
 
 check_for_theme() {

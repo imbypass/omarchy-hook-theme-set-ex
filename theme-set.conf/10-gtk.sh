@@ -1,7 +1,7 @@
 #!/bin/bash
 
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-output_file="$HOME/.config/gtk-3.0/gtk.css"
+output_file="$HOME/.config/omarchy/current/theme/gtk.css"
 
 new_gtk_file="$HOME/.config/omarchy/current/theme/gtk.css"
 
@@ -242,6 +242,7 @@ if [ -f "$new_gtk_file" ]; then
 
 else
     create_dynamic_theme
+    cp $output_file $gtk3_file
     cp $output_file $gtk4_file
 fi
 
