@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ -d ~/.config/omarchy/hooks/theme-set.conf ]]; then
-  for hook in ~/.config/omarchy/hooks/theme-set.conf/*.sh; do
+if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
+  for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
     if [[ -f "$hook" && -x "$hook" ]]; then
       if ! "$hook"; then
           printf "[ERROR]: Hook $(basename "$hook") failed!\n" >&2
