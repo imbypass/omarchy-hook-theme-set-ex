@@ -4,15 +4,15 @@ rm -rf /tmp/theme-hook/
 
 git clone https://github.com/imbypass/omarchy-hook-theme-set-ex.git /tmp/theme-hook
 
-mv /tmp/theme-hook/theme-set ~/.config/omarchy/hooks/
+mv -f /tmp/theme-hook/theme-set ~/.config/omarchy/hooks/
 
-mkdir -p ~/.config/omarchy/hooks/theme-set.conf/
-mv /tmp/theme-hook/theme-set.conf/* ~/.config/omarchy/hooks/theme-set.conf/
+mkdir -p ~/.config/omarchy/hooks/theme-set.d/
+mv -f /tmp/theme-hook/theme-set.d/* ~/.config/omarchy/hooks/theme-set.d/
 
 rm -rf /tmp/theme-hook
 
 chmod +x ~/.config/omarchy/hooks/theme-set
-chmod +x ~/.config/omarchy/hooks/theme-set.conf/*
+chmod +x ~/.config/omarchy/hooks/theme-set.d/*
 
 omarchy-theme-set $(omarchy-theme-current)
 
