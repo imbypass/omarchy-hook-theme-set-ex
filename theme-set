@@ -1,10 +1,15 @@
 #!/bin/bash
+#
+error() {
+    echo -e "\e[31m[ERROR]\e[0m $1"
+    exit 1
+}
 
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
   for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
     if [[ -f "$hook" && -x "$hook" ]]; then
       if ! "$hook"; then
-          printf "[ERROR]: Hook $(basename "$hook") failed!\n" >&2
+          error "Hook $(basename "$hook") failed!" >&2
       fi
     fi
   done

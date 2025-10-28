@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 possible_paths=(
@@ -10,6 +10,10 @@ possible_paths=(
     "/var/lib/flatpak/app/dev.vencord.Vesktop"
     "/var/lib/flatpak/app/io.github.equicord.equibop"
 )
+
+success() {
+    echo -e "\e[32m[SUCCESS]\e[0m $1"
+}
 
 extract_from_section() {
     local section="$1"
@@ -75,14 +79,12 @@ create_dynamic_theme() {
     }
 EOF
 
-
     for path in "${possible_paths[@]}"; do
         if [ -d "$path" ]; then
 
             if [[ -f "$path/themes/vencord.theme.css" ]]; then
                 rm "$path/themes/vencord.theme.css"
             fi
-
             cp "$output_file" "$path/themes/vencord.theme.css"
 
             for file in "$path"/themes/*; do
@@ -116,5 +118,4 @@ check_for_theme() {
 }
 
 check_for_theme
-
-printf "\033[0;32m[SUCCESS]\033[0;37m Discord theme updated!\n"
+success "Discord theme updated!"

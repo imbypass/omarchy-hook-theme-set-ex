@@ -1,18 +1,15 @@
 #!/bin/bash
 
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-output_file="$HOME/.config/omarchy/current/theme/gtk.css"
-
 new_gtk_file="$HOME/.config/omarchy/current/theme/gtk.css"
-
 gtk3_dir="$HOME/.config/gtk-3.0"
 gtk4_dir="$HOME/.config/gtk-4.0"
-
 gtk3_file="$gtk3_dir/gtk.css"
 gtk4_file="$gtk4_dir/gtk.css"
 
-gtk3_backup_file="$gtk3_dir/gtk.css.backup"
-gtk4_backup_file="$gtk4_dir/gtk.css.backup"
+success() {
+    echo -e "\e[32m[SUCCESS]\e[0m $1"
+}
 
 extract_from_section() {
     local section="$1"
@@ -50,7 +47,7 @@ create_dynamic_theme() {
     bright_cyan=$(extract_from_section "colors.bright" "cyan")
     bright_white=$(extract_from_section "colors.bright" "white")
 
-    cat > "$output_file" << EOF
+    cat > "$new_gtk_file" << EOF
     @define-color background     ${background};
     @define-color foreground     ${foreground};
     @define-color black          ${background};
@@ -220,7 +217,6 @@ create_dynamic_theme() {
 EOF
 }
 
-
 if [ ! -d "$gtk3_dir" ]; then
     mkdir -p "$gtk3_dir"
 fi
@@ -229,25 +225,23 @@ if [ ! -d "$gtk4_dir" ]; then
 fi
 
 if [ -f "$new_gtk_file" ]; then
-
-    if [ ! -f "$gtk3_backup_file" ]; then
-        cp "$gtk3_file" "$gtk3_backup_file"
+    if [ ! -f "$gtk3_dir/gtk.css.backup" ]; then
+        cp "$gtk3_file" "$gtk3_dir/gtk.css.backup"
     fi
     cp -f "$new_gtk_file" "$gtk3_file"
 
-    if [ ! -f "$gtk4_backup_file" ]; then
-        cp "$gtk4_file" "$gtk4_backup_file"
+    if [ ! -f "$gtk4_dir/gtk.css.backup" ]; then
+        cp "$gtk4_file" "$gtk4_dir/gtk.css.backup"
     fi
     cp -f "$new_gtk_file" "$gtk4_file"
-
 else
     create_dynamic_theme
-    cp $output_file $gtk3_file
-    cp $output_file $gtk4_file
+    cp "$new_gtk_file" "$gtk3_file"
+    cp "$new_gtk_file" "$gtk4_file"
 fi
 
 nautilus -q > /dev/null 2>&1
 pkill nautilus > /dev/null 2>&1
 
-printf "\033[0;32m[SUCCESS]\033[0;37m GTK theme updated!\n"
+success "GTK theme updated!"
 exit 0

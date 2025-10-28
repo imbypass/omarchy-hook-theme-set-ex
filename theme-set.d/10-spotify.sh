@@ -2,10 +2,13 @@
 #
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 
-if ! command -v spicetify >/dev/null 2>&1; then
-    printf "\033[0;33m[WARNING]\033[0;37m Spicetify not found. Skipping..\n"
-    exit 0
-fi
+success() {
+    echo -e "\e[32m[SUCCESS]\e[0m $1"
+}
+
+warning() {
+    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
+}
 
 extract_from_section() {
     local section="$1"
@@ -108,10 +111,15 @@ EOF
 
 }
 
+if ! command -v spicetify >/dev/null 2>&1; then
+    warning "Spicetify not found. Install 'spicetify-cli' to use..\n"
+    exit 0
+fi
+
 create_spicetify_styling
 create_dynamic_theme
 change_spicetify_theme
 
-printf "\033[0;32m[SUCCESS]\033[0;37m Spotify theme updated!\n"
+success "Spotify theme updated!\n"
 
 spicetify apply > /dev/null 2>&1 & exit 0
