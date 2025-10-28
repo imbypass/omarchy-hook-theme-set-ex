@@ -15,3 +15,6 @@ chmod +x ~/.config/omarchy/hooks/theme-set
 chmod +x ~/.config/omarchy/hooks/theme-set.conf/*
 
 omarchy-theme-set $(omarchy-theme-current)
+
+omarchy-show-done
+exit 0
