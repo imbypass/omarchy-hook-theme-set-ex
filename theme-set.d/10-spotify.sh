@@ -120,6 +120,6 @@ create_spicetify_styling
 create_dynamic_theme
 change_spicetify_theme
 
-success "Spotify theme updated!\n"
+success "Spotify theme updated!"
 
 spicetify apply > /dev/null 2>&1 & exit 0

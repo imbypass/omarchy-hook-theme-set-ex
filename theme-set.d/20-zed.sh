@@ -168,5 +168,5 @@ else
     cp -f "$new_zed_file" "$HOME/.config/zed/themes/omarchy.json"
 fi
 
-success "Zed theme updated!\n"
+success "Zed theme updated!"
 exit 0
