@@ -5,11 +5,11 @@ error() {
     exit 1
 }
 
-if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
-  for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
+if [[ -d ./recipes.d ]]; then
+  for hook in ./recipes.d/*.sh; do
     if [[ -f "$hook" && -x "$hook" ]]; then
       if ! "$hook"; then
-          error "Hook $(basename "$hook") failed!" >&2
+          error "$(basename "$hook") failed!" >&2
       fi
     fi
   done
