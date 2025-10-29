@@ -65,10 +65,8 @@ EOF
 }
 
 change_spicetify_theme() {
-    config_file="$HOME/.config/spicetify/config-xpui.ini"
-
-    sed -i "s/^current_theme[[:space:]]*=.*/current_theme        = omarchy/" "$config_file"
-    sed -i "s/^color_scheme[[:space:]]*=.*/color_scheme           = base/" "$config_file"
+    spicetify config current_theme omarchy
+    spicetify config color_scheme base
 }
 
 create_dynamic_theme() {
@@ -115,6 +113,9 @@ if ! command -v spicetify >/dev/null 2>&1; then
     warning "Spicetify not found. Install 'spicetify-cli' to use..\n"
     exit 0
 fi
+
+sudo chmod a+wr /usr/share/spotify
+sudo chmod a+wr /usr/share/spotify/Apps -R
 
 create_spicetify_styling
 create_dynamic_theme
