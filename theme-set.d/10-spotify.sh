@@ -114,9 +114,6 @@ if ! command -v spicetify >/dev/null 2>&1; then
     exit 0
 fi
 
-sudo chmod a+wr /usr/share/spotify
-sudo chmod a+wr /usr/share/spotify/Apps -R
-
 create_spicetify_styling
 create_dynamic_theme
 change_spicetify_theme
