@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/walker/walker.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/swayosd.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -20,12 +20,10 @@ font=$(omarchy-font-current)
 
 if [[ ! -f "$output_file" ]]; then
     cat > "$output_file" << EOF
-@define-color selected-text #${normal_colors[yellow]};
-@define-color selected-vibrant #${bright_colors[yellow]};
-@define-color text #${primary_foreground};
-@define-color base #${normal_colors[black]};
-@define-color border #${bright_colors[black]};
-@define-color foreground #${primary_foreground};
-@define-color background #${primary_background};
+@define-color background-color #${primary_background};
+@define-color border-color #${primary_foreground};
+@define-color label #${primary_foreground};
+@define-color image #${primary_foreground};
+@define-color progress ${primary_foreground};
 EOF
 fi

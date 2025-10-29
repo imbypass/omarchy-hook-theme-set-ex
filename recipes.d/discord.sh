@@ -595,10 +595,6 @@ fi
 
 for client in "${discord_clients[@]}"; do
     if [ -d "$client" ]; then
-
-        if [[ -f "$client/themes/vencord.theme.css" ]]; then
-            rm "$client/themes/vencord.theme.css"
-        fi
         cp -f "$output_file" "$client/themes/vencord.theme.css"
 
         for file in "$client/themes/*"; do

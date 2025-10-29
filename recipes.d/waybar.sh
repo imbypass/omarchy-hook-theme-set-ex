@@ -18,7 +18,8 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 @define-color background ${primary_background};
 @define-color foreground ${primary_foreground};
 @define-color black ${normal_colors[black]};
@@ -38,3 +39,4 @@ cat > "$output_file" << EOF
 @define-color bright_cyan ${bright_colors[cyan]};
 @define-color bright_white ${bright_colors[white]};
 EOF
+fi

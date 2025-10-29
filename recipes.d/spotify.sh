@@ -47,7 +47,6 @@ highlight           = ${bright_colors[white]}
 text                = ${bright_colors[white]}
 EOF
 fi
-cp $output_colorini "$HOME/.config/spicetify/Themes/omarchy/color.ini"
 
 if [[ ! -f "$output_usercss" ]]; then
     cat > "$output_usercss" << EOF
@@ -86,6 +85,8 @@ background-color: var(--spice-main) !important;
 }
 EOF
 fi
+
+cp $output_colorini "$HOME/.config/spicetify/Themes/omarchy/color.ini"
 cp $output_usercss "$HOME/.config/spicetify/Themes/omarchy/user.css"
 
 spicetify config current_theme omarchy > /dev/null 2>&1

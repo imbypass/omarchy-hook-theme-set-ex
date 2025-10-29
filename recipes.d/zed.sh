@@ -23,7 +23,8 @@ if ! command -v zeditor >/dev/null 2>&1; then
     exit 0
 fi
 
-cat > "$output_file" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 {
   "\$schema": "https://zed.dev/schema/themes/v0.1.0.json",
   "name": "Omarchy",
@@ -130,3 +131,4 @@ cat > "$output_file" << EOF
   ]
 }
 EOF
+fi
