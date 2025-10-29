@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.toml"
-output_file="$HOME/.config/gtk-3.0/gtk.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/gtk.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -18,7 +18,9 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" << EOF
+
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 @define-color background     #${primary_background};
 @define-color foreground     #${primary_foreground};
 @define-color black          #${normal_colors[black]};
@@ -186,5 +188,7 @@ toast button.circular.flat.image-button:hover {
         brightness(103%) contrast(94%);
 }
 EOF
+fi
 
+cp "$output_file" "$HOME/.config/gtk-3.0/gtk.css"
 cp "$output_file" "$HOME/.config/gtk-4.0/gtk.css"

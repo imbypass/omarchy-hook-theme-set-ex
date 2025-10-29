@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/discord/vencord.theme.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 discord_clients=(
     "$HOME/.config/Vencord"
     "$HOME/.config/vesktop"
@@ -26,7 +26,8 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 /**
 * @name Omarchy
 * @author @bypass_
@@ -590,6 +591,7 @@ div.folderIconWrapper__48112 {
     --base07: color-mix(in srgb, var(--base05) 90%, white) !important;
 }
 EOF
+fi
 
 for client in "${discord_clients[@]}"; do
     if [ -d "$client" ]; then

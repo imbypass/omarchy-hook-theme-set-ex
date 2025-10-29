@@ -1,8 +1,8 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_colorini="$HOME/.config/spicetify/Themes/omarchy/color.ini"
-output_usercss="$HOME/.config/spicetify/Themes/omarchy/user.css"
+output_colorini="$HOME/.config/omarchy/current/theme/spicetify_color.ini"
+output_usercss="$HOME/.config/omarchy/current/theme/spicetify_user.css"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -20,11 +20,14 @@ done
 font=$(omarchy-font-current)
 
 if ! command -v spicetify >/dev/null 2>&1; then
-    warning "Spicetify not found. Install 'spicetify-cli' to use.."
+    echo -e "[WARNING]: Spicetify not found. Install 'spicetify-cli' to use.."
     exit 0
 fi
 
-cat > "$output_colorini" << EOF
+mkdir -p "$HOME/.config/spicetify/Themes/omarchy"
+
+if [[ ! -f "$output_colorini" ]]; then
+    cat > "$output_colorini" << EOF
 [system]
 main                = ${primary_background}
 player              = ${primary_background}
@@ -43,8 +46,11 @@ button-disabled     = ${bright_colors[black]}
 highlight           = ${bright_colors[white]}
 text                = ${bright_colors[white]}
 EOF
+fi
+cp $output_colorini "$HOME/.config/spicetify/Themes/omarchy/color.ini"
 
-cat > "$output_usercss" << EOF
+if [[ ! -f "$output_usercss" ]]; then
+    cat > "$output_usercss" << EOF
 *,
 html,
 body {
@@ -79,3 +85,9 @@ display: none !important;
 background-color: var(--spice-main) !important;
 }
 EOF
+fi
+cp $output_usercss "$HOME/.config/spicetify/Themes/omarchy/user.css"
+
+spicetify config current_theme omarchy > /dev/null 2>&1
+spicetify config color_scheme base > /dev/null 2>&1
+spicetify apply > /dev/null 2>&1 & exit 0

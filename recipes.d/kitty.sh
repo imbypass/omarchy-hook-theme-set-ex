@@ -1,8 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-template="kitty.conf"
-output_file="$HOME/.config/kitty/kitty.conf" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/kitty.conf" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -19,7 +18,8 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" <<EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" <<EOF
 background            #${primary_background}
 foreground            #${primary_foreground}
 
@@ -40,3 +40,4 @@ color13 #${bright_colors[magenta]}
 color14 #${bright_colors[cyan]}
 color15 #${bright_colors[white]}
 EOF
+fi

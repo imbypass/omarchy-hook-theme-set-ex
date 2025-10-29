@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/ghostty/config" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/ghostty.conf" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -18,7 +18,9 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
+font-family = "${font}"
 background = #${primary_background}
 foreground = #${primary_foreground}
 
@@ -40,3 +42,4 @@ palette = 13=#${bright_colors[magenta]}
 palette = 14=#${bright_colors[cyan]}
 palette = 15=#${bright_colors[white]}
 EOF
+fi

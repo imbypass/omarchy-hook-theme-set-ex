@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/alacritty/alacritty.toml" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/alacritty.toml" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -18,7 +18,8 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-cat > "$output_file" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 [window]
 opacity = 0.9
 
@@ -49,3 +50,4 @@ magenta     = "#${bright_colors[magenta]}"
 cyan        = "#${bright_colors[cyan]}"
 white       = "#${bright_colors[white]}"
 EOF
+fi
