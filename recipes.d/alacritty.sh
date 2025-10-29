@@ -1,24 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-template="alacritty.toml"
-
-success() {
-    echo -e "\e[32m[SUCCESS]\e[0m $1"
-}
-
-warning() {
-    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
-}
-
-info() {
-    echo -e "\e[34m[INFO]\e[0m $1"
-}
-
-error() {
-    echo -e "\e[31m[ERROR]\e[0m $1"
-    exit 1
-}
+output_file="$HOME/.config/alacritty/alacritty.toml" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -35,29 +18,34 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-process_template() {
-    if [[ -f "templates.d/$template" ]]; then
-        info "Processing $(basename $template).."
-        cp "templates.d/$template" "output/${template##*/}"
+cat > "$output_file" << EOF
+[window]
+opacity = 0.9
 
-        sed -i "s/%background%/${primary_background}/g" "output/${template##*/}"
-        sed -i "s/%foreground%/${primary_foreground}/g" "output/${template##*/}"
+[colors]
+transparent_background_colors = true
 
-        for color in "${colors[@]}"; do
-            sed -i "s/%${color}%/${normal_colors[$color]}/g" "output/${template##*/}"
-            sed -i "s/%bright_${color}%/${bright_colors[$color]}/g" "output/${template##*/}"
-        done
+[colors.primary]
+background  = "#${primary_background}"
+foreground  = "#${primary_foreground}"
 
-        sed -i "s/%font%/${font}/g" "output/${template##*/}"
-    fi
-}
+[colors.normal]
+black       = "#${normal_colors[black]}"
+red         = "#${normal_colors[red]}"
+green       = "#${normal_colors[green]}"
+yellow      = "#${normal_colors[yellow]}"
+blue        = "#${normal_colors[blue]}"
+magenta     = "#${normal_colors[magenta]}"
+cyan        = "#${normal_colors[cyan]}"
+white       = "#${normal_colors[white]}"
 
-apply_theme() {
-    cp -f "output/$template" "$HOME/.config/alacritty/alacritty.toml"
-}
-
-process_template
-apply_theme
-
-success "GTK theme updated!"
-exit 0
+[colors.bright]
+black       = "#${bright_colors[black]}"
+red         = "#${bright_colors[red]}"
+green       = "#${bright_colors[green]}"
+yellow      = "#${bright_colors[yellow]}"
+blue        = "#${bright_colors[blue]}"
+magenta     = "#${bright_colors[magenta]}"
+cyan        = "#${bright_colors[cyan]}"
+white       = "#${bright_colors[white]}"
+EOF

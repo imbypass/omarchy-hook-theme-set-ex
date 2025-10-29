@@ -1,23 +1,8 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-
-success() {
-    echo -e "\e[32m[SUCCESS]\e[0m $1"
-}
-
-warning() {
-    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
-}
-
-info() {
-    echo -e "\e[34m[INFO]\e[0m $1"
-}
-
-error() {
-    echo -e "\e[31m[ERROR]\e[0m $1"
-    exit 1
-}
+output_colorini="$HOME/.config/spicetify/Themes/omarchy/color.ini"
+output_usercss="$HOME/.config/spicetify/Themes/omarchy/user.css"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -34,47 +19,63 @@ for color in "${colors[@]}"; do
 done
 font=$(omarchy-font-current)
 
-process_template() {
-    if [[ -f "templates.d/spicetify/color.ini" ]]; then
-        cp -f "templates.d/spicetify/color.ini" "output/spicetify/color.ini"
-    fi
-    if [[ -f "templates.d/spicetify/user.css" ]]; then
-        cp -f "templates.d/spicetify/user.css" "output/spicetify/user.css"
-    fi
-
-    info "Processing color.ini.."
-    sed -i "s/%background%/${primary_background}/g" "output/spicetify/color.ini"
-
-    for color in "${colors[@]}"; do
-        sed -i "s/%${color}%/${normal_colors[$color]}/g" "output/spicetify/color.ini"
-        sed -i "s/%bright_${color}%/${bright_colors[$color]}/g" "output/spicetify/color.ini"
-    done
-
-    info "Processing user.css.."
-    sed -i "s/%font%/${font}/g" "output/spicetify/user.css"
-}
-
-
-apply_theme() {
-    mkdir -p "$HOME/.config/spicetify/Themes/omarchy"
-
-    cp -f "output/spicetify/user.css" "$HOME/.config/spicetify/Themes/omarchy/user.css"
-    cp -f "output/spicetify/color.ini" "$HOME/.config/spicetify/Themes/omarchy/color.ini"
-
-    config_file="$HOME/.config/spicetify/config-xpui.ini"
-
-    sed -i "s/^current_theme[[:space:]]*=.*/current_theme        = omarchy/" "$config_file"
-    sed -i "s/^color_scheme[[:space:]]*=.*/color_scheme           = system/" "$config_file"
-
-    success "Spotify theme updated!"
-    spicetify apply > /dev/null 2>&1 & exit 0
-    exit 0
-}
-
 if ! command -v spicetify >/dev/null 2>&1; then
     warning "Spicetify not found. Install 'spicetify-cli' to use.."
     exit 0
 fi
 
-process_template
-apply_theme
+cat > "$output_colorini" << EOF
+[system]
+main                = ${primary_background}
+player              = ${primary_background}
+card                = ${primary_background}
+main-elevated       = ${primary_background}
+sidebar             = ${primary_background}
+shadow              = ${primary_background}
+misc                = ${normal_colors[white]}
+selected-row        = ${normal_colors[white]}
+button              = ${normal_colors[white]}
+subtext             = ${normal_colors[white]}
+notification-error  = ${normal_colors[red]}
+button-active       = ${normal_colors[green]}
+notification        = ${bright_colors[black]}
+button-disabled     = ${bright_colors[black]}
+highlight           = ${bright_colors[white]}
+text                = ${bright_colors[white]}
+EOF
+
+cat > "$output_usercss" << EOF
+*,
+html,
+body {
+font-family: "${font}" !important;
+}
+
+:root,
+.encore-dark-theme,
+.encore-base-set,
+.encore-inverted-light-set {
+--background-highlight: rgba(var(--spice-rgb-highlight), 0.25) !important;
+}
+.main-nowPlayingBar-container {
+background-color: var(--background-base);
+border-radius: 0.5rem;
+padding: 0.5rem;
+color: var(--spice-text);
+}
+
+.main-entityHeader-backgroundColor {
+display: none !important;
+}
+.main-actionBarBackground-background {
+display: none !important;
+}
+.main-home-homeHeader {
+display: none !important;
+}
+
+.main-topBar-background,
+.main-home-filterChipsSection {
+background-color: var(--spice-main) !important;
+}
+EOF

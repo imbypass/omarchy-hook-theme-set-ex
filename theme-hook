@@ -5,6 +5,19 @@ error() {
     exit 1
 }
 
+# execute core omarchy recipe hooks
+if [[ -d /etc/omarchy/recipes.d ]]; then
+  for hook in /etc/omarchy/recipes.d/*.sh; do
+    if [[ -f "$hook" && -x "$hook" ]]; then
+      if ! "$hook"; then
+          error "$(basename "$hook") failed!" >&2
+      fi
+    fi
+  done
+fi
+
+# execute user recipe hooks
+# TODO: make this an absolute path to xdg-user recipes folder
 if [[ -d ./recipes.d ]]; then
   for hook in ./recipes.d/*.sh; do
     if [[ -f "$hook" && -x "$hook" ]]; then
