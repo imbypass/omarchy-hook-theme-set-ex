@@ -62,9 +62,8 @@ EOF
 }
 
 change_spicetify_theme() {
-    config_file="$HOME/.config/spicetify/config-xpui.ini"
-    sed -i "s/^current_theme[[:space:]]*=.*/current_theme        = omarchy/" "$config_file"
-    sed -i "s/^color_scheme[[:space:]]*=.*/color_scheme           = base/" "$config_file"
+    spicetify config current_theme omarchy
+    spicetify config color_scheme base
 }
 
 create_dynamic_theme() {
