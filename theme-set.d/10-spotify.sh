@@ -33,7 +33,6 @@ html,
 body {
     font-family: "$(omarchy-font-current)" !important;
 }
-
 :root,
 .encore-dark-theme,
 .encore-base-set,
@@ -46,7 +45,6 @@ body {
     padding: 0.5rem;
     color: var(--spice-text);
 }
-
 .main-entityHeader-backgroundColor {
     display: none !important;
 }
@@ -56,7 +54,6 @@ body {
 .main-home-homeHeader {
     display: none !important;
 }
-
 .main-topBar-background,
 .main-home-filterChipsSection {
     background-color: var(--spice-main) !important;
@@ -86,7 +83,7 @@ create_dynamic_theme() {
     color0D=$(extract_from_section "colors.normal" "blue")
     color0E=$(extract_from_section "colors.normal" "magenta")
     color0F=$(extract_from_section "colors.bright" "red")
-
+    
     cat > "$HOME/.config/spicetify/Themes/omarchy/color.ini" << EOF
 [base]
 main                = ${color00}
@@ -106,21 +103,39 @@ button-active       = ${color0B}
 subtext             = ${color03}
 text                = ${color07}
 EOF
-
 }
+
+spotify_was_running=false
+if pgrep -x "spotify" > /dev/null 2>&1; then
+    spotify_was_running=true
+fi
 
 if ! command -v spicetify >/dev/null 2>&1; then
     warning "Spicetify not found. Install 'spicetify-cli' to use..\n"
     exit 0
 fi
 
-sudo chmod a+wr /usr/share/spotify
-sudo chmod a+wr /usr/share/spotify/Apps -R
-
 create_spicetify_styling
 create_dynamic_theme
 change_spicetify_theme
 
-success "Spotify theme updated!"
+if [ "$spotify_was_running" = true ]; then
+       spicetify apply > /dev/null 2>&1 &
+else
+    
+    setsid bash -c '
+        spicetify apply > /dev/null 2>&1 &
+        
+        for i in {1..50}; do
+            if pgrep -x "spotify" > /dev/null 2>&1; then
+                sleep 0.5
+                killall -9 spotify > /dev/null 2>&1
+                exit 0
+            fi
+            sleep 0.1
+        done
+    ' > /dev/null 2>&1 < /dev/null &
+fi
 
-spicetify apply > /dev/null 2>&1 & exit 0
+success "Spotify theme updated!"
+exit
