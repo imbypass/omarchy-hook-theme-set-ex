@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/zed/themes/omarchy.json" # THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/zed.json" # THIS SHOULD USE THE CURRENT/THEME DIR
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -132,3 +132,5 @@ if [[ ! -f "$output_file" ]]; then
 }
 EOF
 fi
+
+cp "$output_file" "$HOME/.config/zed/themes/omarchy.json"

@@ -2,7 +2,7 @@
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
 output_colorini="$HOME/.config/omarchy/current/theme/spicetify_color.ini"
-output_usercss="$HOME/.config/omarchy/current/theme/spicetify_user.css"
+output_usercss=""$HOME/.config/spicetify/Themes/omarchy/user.css""
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -48,12 +48,16 @@ text                = ${bright_colors[white]}
 EOF
 fi
 
-if [[ ! -f "$output_usercss" ]]; then
-    cat > "$output_usercss" << EOF
+cat > "$output_usercss" << EOF
 *,
 html,
 body {
 font-family: "${font}" !important;
+}
+
+.playlist-playlist-actionBarBackground-background {
+    background-image: none !important;
+    --text-subdued: var(--spice-text) !important;
 }
 
 :root,
@@ -84,10 +88,8 @@ display: none !important;
 background-color: var(--spice-main) !important;
 }
 EOF
-fi
 
 cp $output_colorini "$HOME/.config/spicetify/Themes/omarchy/color.ini"
-cp $output_usercss "$HOME/.config/spicetify/Themes/omarchy/user.css"
 
 spicetify config current_theme omarchy > /dev/null 2>&1
 spicetify config color_scheme base > /dev/null 2>&1

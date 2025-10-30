@@ -26,3 +26,14 @@ if [[ -d $HOME/.config/omarchy/recipes.d/ ]]; then
     fi
   done
 fi
+
+# execute local recipe recipes (these shouldn't exist and are purely for testing)
+if [[ -d ./recipes.d/ ]]; then
+  for recipe in ./recipes.d/*.sh; do
+    if [[ -f "$recipe" && -x "$recipe" ]]; then
+      if ! "$recipe"; then
+          error "$(basename "$recipe") failed!" >&2
+      fi
+    fi
+  done
+fi
