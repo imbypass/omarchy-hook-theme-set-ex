@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/omarchy/current/theme/vscode.json" # THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/vscode.json"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -1261,4 +1261,5 @@ if [[ ! -f "$output_file" ]]; then
 EOF
 fi
 
-cp "$output_file" "$HOME/.vscode-oss/extensions/tintedtheming.base16-tinted-themes-0.27.0-universal/themes/base16/omarchy.json"
+install_location="$HOME/.vscode-oss/extensions/tintedtheming.base16-tinted-themes-0.27.0-universal/themes/base16/omarchy.json"
+cp "$output_file" "$install_location"

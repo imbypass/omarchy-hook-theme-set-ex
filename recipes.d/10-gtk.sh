@@ -1,7 +1,7 @@
 #!/bin/bash
 
-colors_file="$HOME/.config/omarchy/current/theme/colors.toml"
-output_file="$HOME/.config/omarchy/current/theme/gtk.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+colors_file="$HOME/.config/omarchy/current/theme/colors.json"
+output_file="$HOME/.config/omarchy/current/theme/gtk.css"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -10,14 +10,13 @@ clean_color() {
 colors=(black red green yellow blue magenta cyan white)
 declare -A normal_colors bright_colors
 
-primary_background=$(clean_color "$(grep -A 2 "\[primary\]" "$colors_file" | grep "background" | cut -d= -f2 | xargs)")
-primary_foreground=$(clean_color "$(grep -A 2 "\[primary\]" "$colors_file" | grep "foreground" | cut -d= -f2 | xargs)")
+primary_background=$(clean_color "$(jq -r '.primary.background' $colors_file)")
+primary_foreground=$(clean_color "$(jq -r '.primary.foreground' $colors_file)")
 for color in "${colors[@]}"; do
-    normal_colors[$color]=$(clean_color "$(grep -A 8 "\[normal\]" "$colors_file" | grep "$color" | head -1 | cut -d= -f2 | xargs)")
-    bright_colors[$color]=$(clean_color "$(grep -A 8 "\[bright\]" "$colors_file" | grep "$color" | head -1 | cut -d= -f2 | xargs)")
+    normal_colors[$color]=$(clean_color "$(jq -r ".normal.$color" $colors_file)")
+    bright_colors[$color]=$(clean_color "$(jq -r ".bright.$color" $colors_file)")
 done
 font=$(omarchy-font-current)
-
 
 if [[ ! -f "$output_file" ]]; then
     cat > "$output_file" << EOF

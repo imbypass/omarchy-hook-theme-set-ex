@@ -1,15 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
-discord_clients=(
-    "$HOME/.config/Vencord"
-    "$HOME/.config/vesktop"
-    "$HOME/.config/equipbop"
-    "/var/lib/flatpak/app/com.discordapp.Discord"
-    "/var/lib/flatpak/app/dev.vencord.Vesktop"
-    "/var/lib/flatpak/app/io.github.equicord.equibop"
-)
+output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -592,6 +584,15 @@ div.folderIconWrapper__48112 {
 }
 EOF
 fi
+
+discord_clients=(
+    "$HOME/.config/Vencord"
+    "$HOME/.config/vesktop"
+    "$HOME/.config/equipbop"
+    "/var/lib/flatpak/app/com.discordapp.Discord"
+    "/var/lib/flatpak/app/dev.vencord.Vesktop"
+    "/var/lib/flatpak/app/io.github.equicord.equibop"
+)
 
 for client in "${discord_clients[@]}"; do
     if [ -d "$client" ]; then

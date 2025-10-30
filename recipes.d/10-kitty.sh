@@ -1,7 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_file="$HOME/.config/omarchy/current/theme/kitty.conf" # TODO: THIS SHOULD USE THE CURRENT/THEME DIR
+output_file="$HOME/.config/omarchy/current/theme/kitty.conf"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'

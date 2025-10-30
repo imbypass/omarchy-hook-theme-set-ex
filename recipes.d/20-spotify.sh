@@ -1,8 +1,7 @@
 #!/bin/bash
 
 colors_file="$HOME/.config/omarchy/current/theme/colors.json"
-output_colorini="$HOME/.config/omarchy/current/theme/spicetify_color.ini"
-output_usercss=""$HOME/.config/spicetify/Themes/omarchy/user.css""
+output_file="$HOME/.config/omarchy/current/theme/spicetify_color.ini"
 
 clean_color() {
     echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
@@ -26,8 +25,8 @@ fi
 
 mkdir -p "$HOME/.config/spicetify/Themes/omarchy"
 
-if [[ ! -f "$output_colorini" ]]; then
-    cat > "$output_colorini" << EOF
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 [system]
 main                = ${primary_background}
 player              = ${primary_background}
@@ -48,6 +47,7 @@ text                = ${bright_colors[white]}
 EOF
 fi
 
+output_usercss=""$HOME/.config/spicetify/Themes/omarchy/user.css""
 cat > "$output_usercss" << EOF
 *,
 html,
@@ -89,7 +89,7 @@ background-color: var(--spice-main) !important;
 }
 EOF
 
-cp $output_colorini "$HOME/.config/spicetify/Themes/omarchy/color.ini"
+cp $output_file "$HOME/.config/spicetify/Themes/omarchy/color.ini"
 
 spicetify config current_theme omarchy > /dev/null 2>&1
 spicetify config color_scheme base > /dev/null 2>&1
