@@ -51,7 +51,7 @@ create_dynamic_theme() {
 
     cat > "$output_file" << EOF
     /**
-    * @name Match System
+    * @name Omarchy
     * @author @bypass_
     * @version 0.1.0
     * @description Match Omarchy system theme.
