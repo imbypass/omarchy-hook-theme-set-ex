@@ -1,4 +1,4 @@
-#!/bin/bah
+#!/bin/bash
 
 output_file="$HOME/.config/omarchy/current/theme/gtk.css"
 
