@@ -1,4 +1,4 @@
-#!/bin/bas
+#!/bin/bash
 
 output_file="$HOME/.config/omarchy/current/theme/kitty.conf"
 
