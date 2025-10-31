@@ -8,22 +8,22 @@ font-family = "${font}"
 background = #${primary_background}
 foreground = #${primary_foreground}
 
-palette = 0=#${normal_colors[black]}
-palette = 1=#${normal_colors[red]}
-palette = 2=#${normal_colors[green]}
-palette = 3=#${normal_colors[yellow]}
-palette = 4=#${normal_colors[blue]}
-palette = 5=#${normal_colors[magenta]}
-palette = 6=#${normal_colors[cyan]}
-palette = 7=#${normal_colors[white]}
+palette = 0=#${normal_black}
+palette = 1=#${normal_red}
+palette = 2=#${normal_green}
+palette = 3=#${normal_yellow}
+palette = 4=#${normal_blue}
+palette = 5=#${normal_magenta}
+palette = 6=#${normal_cyan}
+palette = 7=#${normal_white}
 
-palette = 8=#${bright_colors[black]}
-palette = 9=#${bright_colors[red]}
-palette = 10=#${bright_colors[green]}
-palette = 11=#${bright_colors[yellow]}
-palette = 12=#${bright_colors[blue]}
-palette = 13=#${bright_colors[magenta]}
-palette = 14=#${bright_colors[cyan]}
-palette = 15=#${bright_colors[white]}
+palette = 8=#${bright_black}
+palette = 9=#${bright_red}
+palette = 10=#${bright_green}
+palette = 11=#${bright_yellow}
+palette = 12=#${bright_blue}
+palette = 13=#${bright_magenta}
+palette = 14=#${bright_cyan}
+palette = 15=#${bright_white}
 EOF
 fi

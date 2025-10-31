@@ -16,12 +16,26 @@ declare -A normal_colors bright_colors
 
 primary_background=$(clean_color "$(jq -r '.primary.background' $colors_file)")
 primary_foreground=$(clean_color "$(jq -r '.primary.foreground' $colors_file)")
-for color in "${colors[@]}"; do
-    normal_colors[$color]=$(clean_color "$(jq -r ".normal.$color" $colors_file)")
-    bright_colors[$color]=$(clean_color "$(jq -r ".bright.$color" $colors_file)")
-done
+normal_black=$(clean_color "$(jq -r ".normal.black" $colors_file)")
+normal_red=$(clean_color "$(jq -r ".normal.red" $colors_file)")
+normal_green=$(clean_color "$(jq -r ".normal.green" $colors_file)")
+normal_yellow=$(clean_color "$(jq -r ".normal.yellow" $colors_file)")
+normal_blue=$(clean_color "$(jq -r ".normal.blue" $colors_file)")
+normal_magenta=$(clean_color "$(jq -r ".normal.magenta" $colors_file)")
+normal_cyan=$(clean_color "$(jq -r ".normal.cyan" $colors_file)")
+normal_white=$(clean_color "$(jq -r ".normal.white" $colors_file)")
+bright_black=$(clean_color "$(jq -r ".bright.black" $colors_file)")
+bright_red=$(clean_color "$(jq -r ".bright.red" $colors_file)")
+bright_green=$(clean_color "$(jq -r ".bright.green" $colors_file)")
+bright_yellow=$(clean_color "$(jq -r ".bright.yellow" $colors_file)")
+bright_blue=$(clean_color "$(jq -r ".bright.blue" $colors_file)")
+bright_magenta=$(clean_color "$(jq -r ".bright.magenta" $colors_file)")
+bright_cyan=$(clean_color "$(jq -r ".bright.cyan" $colors_file)")
+bright_white=$(clean_color "$(jq -r ".bright.white" $colors_file)")
 font=$(omarchy-font-current)
-export primary_background primary_foreground normal_colors bright_colors font
+export primary_background primary_foreground font
+export normal_black normal_red normal_green normal_yellow normal_blue normal_magenta normal_cyan normal_white
+export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
 
 # execute core omarchy recipe recipes
 if [[ -d /etc/omarchy/recipes.d ]]; then

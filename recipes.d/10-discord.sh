@@ -18,17 +18,17 @@ if [[ ! -f "$output_file" ]]; then
     --base02: color-mix(in srgb, #${primary_background} 90%, white);
     --base03: color-mix(in srgb, #${primary_background} 80%, white);
     --base04: color-mix(in srgb, #${primary_background} 70%, white);
-    --base05: #${bright_colors[white]};
-    --base06: color-mix(in srgb, #${bright_colors[white]} 75%, white);
-    --base07: color-mix(in srgb, #${bright_colors[white]} 70%, white);
-    --base08: #${bright_colors[white]};
-    --base09: #${normal_colors[yellow]};
-    --base0A: #${bright_colors[yellow]};
-    --base0B: #${normal_colors[green]};
-    --base0C: #${normal_colors[cyan]};
-    --base0D: #${normal_colors[blue]};
-    --base0E: #${normal_colors[magenta]};
-    --base0F: #${bright_colors[red]};
+    --base05: #${bright_white};
+    --base06: color-mix(in srgb, #${bright_white} 75%, white);
+    --base07: color-mix(in srgb, #${bright_white} 70%, white);
+    --base08: #${bright_white};
+    --base09: #${normal_yellow};
+    --base0A: #${bright_yellow};
+    --base0B: #${normal_green};
+    --base0C: #${normal_cyan};
+    --base0D: #${normal_blue};
+    --base0E: #${normal_magenta};
+    --base0F: #${bright_red};
 
     --font: "${font}";
     --font-code: var(--font);

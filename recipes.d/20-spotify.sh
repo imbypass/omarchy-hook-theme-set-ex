@@ -18,16 +18,16 @@ card                = ${primary_background}
 main-elevated       = ${primary_background}
 sidebar             = ${primary_background}
 shadow              = ${primary_background}
-misc                = ${normal_colors[white]}
-selected-row        = ${normal_colors[white]}
-button              = ${normal_colors[white]}
-subtext             = ${normal_colors[white]}
-notification-error  = ${normal_colors[red]}
-button-active       = ${normal_colors[green]}
-notification        = ${bright_colors[black]}
-button-disabled     = ${bright_colors[black]}
-highlight           = ${bright_colors[white]}
-text                = ${bright_colors[white]}
+misc                = ${normal_white}
+selected-row        = ${normal_white}
+button              = ${normal_white}
+subtext             = ${normal_white}
+notification-error  = ${normal_red}
+button-active       = ${normal_green}
+notification        = ${bright_black}
+button-disabled     = ${bright_black}
+highlight           = ${bright_white}
+text                = ${bright_white}
 EOF
 fi
 

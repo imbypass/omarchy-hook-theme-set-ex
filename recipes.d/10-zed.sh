@@ -27,86 +27,86 @@ if [[ ! -f "$output_file" ]]; then
         "text.placeholder": "#${primary_foreground}50",
         "ignored": "#${primary_foreground}30",
         "element.hover": "#${primary_foreground}30",
-        "ghost_element.hover": "#${bright_colors[black]}30",
-        "ghost_element.selected": "#${bright_colors[black]}30",
-        "ghost_element.active": "#${bright_colors[black]}60",
-        "border": "#${normal_colors[black]}",
-        "editor.highlighted_line.background": "#${bright_colors[black]}10",
-        "editor.active_line.background": "#${bright_colors[black]}10",
-        "panel.background": "#${normal_colors[black]}90",
-        "title_bar.background": "#${normal_colors[black]}90",
-        "title_bar.inactive_background": "#${normal_colors[black]}90",
-        "status_bar.background": "#${normal_colors[black]}90",
-        "drop_target.background": "#${normal_colors[black]}90",
-        "elevated_surface.background": "#${normal_colors[black]}",
-        "toolbar.background": "#${normal_colors[black]}90",
-        "tab_bar.background": "#${normal_colors[black]}90",
-        "tab.inactive_background": "#${normal_colors[black]}90",
-        "tab.active_background": "#${bright_colors[black]}30",
+        "ghost_element.hover": "#${bright_black}30",
+        "ghost_element.selected": "#${bright_black}30",
+        "ghost_element.active": "#${bright_black}60",
+        "border": "#${normal_black}",
+        "editor.highlighted_line.background": "#${bright_black}10",
+        "editor.active_line.background": "#${bright_black}10",
+        "panel.background": "#${normal_black}90",
+        "title_bar.background": "#${normal_black}90",
+        "title_bar.inactive_background": "#${normal_black}90",
+        "status_bar.background": "#${normal_black}90",
+        "drop_target.background": "#${normal_black}90",
+        "elevated_surface.background": "#${normal_black}",
+        "toolbar.background": "#${normal_black}90",
+        "tab_bar.background": "#${normal_black}90",
+        "tab.inactive_background": "#${normal_black}90",
+        "tab.active_background": "#${bright_black}30",
         "scrollbar.track.background": "transparent",
-        "scrollbar.track.border": "#${normal_colors[black]}",
+        "scrollbar.track.border": "#${normal_black}",
         "scrollbar.thumb.background": "#${primary_foreground}",
-        "editor.gutter.background": "#${normal_colors[black]}90",
-        "terminal.background": "#${normal_colors[black]}10",
+        "editor.gutter.background": "#${normal_black}90",
+        "terminal.background": "#${normal_black}10",
         "terminal.foreground": "#${primary_foreground}",
         "terminal.dim_foreground": "#${primary_foreground}",
         "terminal.bright_foreground": "#${primary_foreground}",
-        "terminal.ansi.black": "#${normal_colors[black]}",
-        "terminal.ansi.red": "#${normal_colors[red]}",
-        "terminal.ansi.green": "#${normal_colors[green]}",
-        "terminal.ansi.yellow": "#${normal_colors[yellow]}",
-        "terminal.ansi.blue": "#${normal_colors[blue]}",
-        "terminal.ansi.magenta": "#${normal_colors[magenta]}",
-        "terminal.ansi.cyan": "#${normal_colors[cyan]}",
-        "terminal.ansi.white": "#${normal_colors[white]}",
-        "terminal.ansi.bright_black": "#${bright_colors[black]}",
-        "terminal.ansi.bright_red": "#${bright_colors[red]}",
-        "terminal.ansi.bright_green": "#${bright_colors[green]}",
-        "terminal.ansi.bright_yellow": "#${bright_colors[yellow]}",
-        "terminal.ansi.bright_blue": "#${bright_colors[blue]}",
-        "terminal.ansi.bright_magenta": "#${bright_colors[magenta]}",
-        "terminal.ansi.bright_cyan": "#${bright_colors[cyan]}",
-        "terminal.ansi.bright_white": "#${bright_colors[white]}",
-        "modified": "#${normal_colors[red]}",
+        "terminal.ansi.black": "#${normal_black}",
+        "terminal.ansi.red": "#${normal_red}",
+        "terminal.ansi.green": "#${normal_green}",
+        "terminal.ansi.yellow": "#${normal_yellow}",
+        "terminal.ansi.blue": "#${normal_blue}",
+        "terminal.ansi.magenta": "#${normal_magenta}",
+        "terminal.ansi.cyan": "#${normal_cyan}",
+        "terminal.ansi.white": "#${normal_white}",
+        "terminal.ansi.bright_black": "#${bright_black}",
+        "terminal.ansi.bright_red": "#${bright_red}",
+        "terminal.ansi.bright_green": "#${bright_green}",
+        "terminal.ansi.bright_yellow": "#${bright_yellow}",
+        "terminal.ansi.bright_blue": "#${bright_blue}",
+        "terminal.ansi.bright_magenta": "#${bright_magenta}",
+        "terminal.ansi.bright_cyan": "#${bright_cyan}",
+        "terminal.ansi.bright_white": "#${bright_white}",
+        "modified": "#${normal_red}",
         "syntax": {
           "attribute": {
-            "color": "#${normal_colors[red]}"
+            "color": "#${normal_red}"
           },
           "boolean": {
-            "color": "#${normal_colors[green]}"
+            "color": "#${normal_green}"
           },
           "comment": {
-            "color": "#${bright_colors[black]}"
+            "color": "#${bright_black}"
           },
           "comment.doc": {
-            "color": "#${bright_colors[black]}"
+            "color": "#${bright_black}"
           },
           "constant": {
-            "color": "#${bright_colors[green]}"
+            "color": "#${bright_green}"
           },
           "function": {
-            "color": "#${bright_colors[cyan]}"
+            "color": "#${bright_cyan}"
           },
           "keyword": {
-            "color": "#${normal_colors[blue]}"
+            "color": "#${normal_blue}"
           },
           "number": {
-            "color": "#${normal_colors[magenta]}"
+            "color": "#${normal_magenta}"
           },
           "operator": {
-            "color": "#${normal_colors[blue]}"
+            "color": "#${normal_blue}"
           },
           "string": {
-            "color": "#${normal_colors[red]}"
+            "color": "#${normal_red}"
           },
           "variable": {
-            "color": "#${normal_colors[green]}"
+            "color": "#${normal_green}"
           }
         },
         "players": [
           {
             "cursor": "#${primary_foreground}",
-            "background": "#${normal_colors[black]}",
+            "background": "#${normal_black}",
             "selection": "#${primary_foreground}30"
           }
         ]
