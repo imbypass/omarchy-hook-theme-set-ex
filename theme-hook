@@ -5,11 +5,29 @@ error() {
     exit 1
 }
 
+colors_file="$HOME/.config/omarchy/current/theme/colors.json"
+
+clean_color() {
+    echo "$1" | sed "s/['\"]//g" | sed 's/#//g' | sed 's/0x//g' | sed 's/0X//g'
+}
+
+colors=(black red green yellow blue magenta cyan white)
+declare -A normal_colors bright_colors
+
+primary_background=$(clean_color "$(jq -r '.primary.background' $colors_file)")
+primary_foreground=$(clean_color "$(jq -r '.primary.foreground' $colors_file)")
+for color in "${colors[@]}"; do
+    normal_colors[$color]=$(clean_color "$(jq -r ".normal.$color" $colors_file)")
+    bright_colors[$color]=$(clean_color "$(jq -r ".bright.$color" $colors_file)")
+done
+font=$(omarchy-font-current)
+export primary_background primary_foreground normal_colors bright_colors font
+
 # execute core omarchy recipe recipes
 if [[ -d /etc/omarchy/recipes.d ]]; then
   for recipe in /etc/omarchy/recipes.d/*.sh; do
     if [[ -f "$recipe" && -x "$recipe" ]]; then
-      if ! "$recipe"; then
+      if ! "$recipe" "$@"; then
           error "$(basename "$recipe") failed!" >&2
       fi
     fi
@@ -20,7 +38,7 @@ fi
 if [[ -d $HOME/.config/omarchy/recipes.d/ ]]; then
   for recipe in $HOME/.config/omarchy/recipes.d/*.sh; do
     if [[ -f "$recipe" && -x "$recipe" ]]; then
-      if ! "$recipe"; then
+      if ! "$recipe" "$@"; then
           error "$(basename "$recipe") failed!" >&2
       fi
     fi
@@ -31,7 +49,7 @@ fi
 if [[ -d ./recipes.d/ ]]; then
   for recipe in ./recipes.d/*.sh; do
     if [[ -f "$recipe" && -x "$recipe" ]]; then
-      if ! "$recipe"; then
+      if ! "$recipe" "$@"; then
           error "$(basename "$recipe") failed!" >&2
       fi
     fi
