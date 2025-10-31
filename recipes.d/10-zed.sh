@@ -70,7 +70,7 @@ if [[ ! -f "$output_file" ]]; then
         "modified": "#${normal_red}",
         "syntax": {
           "attribute": {
-            "color": "#${normal_red}"
+            "color": "#${normal_white}"
           },
           "boolean": {
             "color": "#${normal_green}"
@@ -117,4 +117,5 @@ if [[ ! -f "$output_file" ]]; then
 EOF
 fi
 
+mkdir -p "$HOME/.config/zed/themes/"
 cp "$output_file" "$HOME/.config/zed/themes/omarchy.json"
