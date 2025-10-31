@@ -217,11 +217,38 @@ create_dynamic_theme() {
 EOF
 }
 
+NAUTILUS_LOCATIONS=()
+
+save_nautilus_locations() {
+    local output
+    output=$(gdbus introspect --session --dest org.gnome.Nautilus \
+             --object-path /org/freedesktop/FileManager1 2>/dev/null)
+    mapfile -t NAUTILUS_LOCATIONS < <(echo "$output" | \
+        grep "OpenLocations" | grep -o "file://[^']*" | sed 's|file://||')
+    [ ${#NAUTILUS_LOCATIONS[@]} -gt 0 ]
+}
+
+restore_nautilus_locations() {
+    [ ${#NAUTILUS_LOCATIONS[@]} -eq 0 ] && return 1
+    local count=0
+    for path in "${NAUTILUS_LOCATIONS[@]}"; do
+        [ -d "$path" ] && nautilus "$path" &>/dev/null & ((count++))
+    done
+    [ $count -gt 0 ]
+}
+
 if [ ! -d "$gtk3_dir" ]; then
     mkdir -p "$gtk3_dir"
 fi
 if [ ! -d "$gtk4_dir" ]; then
     mkdir -p "$gtk4_dir"
+fi
+
+NAUTILUS_WAS_RUNNING=false
+
+if pgrep -x "nautilus" > /dev/null 2>&1; then
+    NAUTILUS_WAS_RUNNING=true
+    save_nautilus_locations
 fi
 
 if [ -f "$new_gtk_file" ]; then
@@ -240,8 +267,12 @@ else
     cp "$new_gtk_file" "$gtk4_file"
 fi
 
-nautilus -q > /dev/null 2>&1
-pkill nautilus > /dev/null 2>&1
+if [ "$NAUTILUS_WAS_RUNNING" = true ]; then
+    nautilus -q > /dev/null 2>&1
+    pkill nautilus > /dev/null 2>&1
+    sleep 0.5
+    restore_nautilus_locations
+fi
 
 success "GTK theme updated!"
 exit 0
