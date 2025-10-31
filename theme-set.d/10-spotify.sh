@@ -125,9 +125,9 @@ else
     setsid bash -c '
         spicetify apply > /dev/null 2>&1 &
 
-        for i in {1..50}; do
+        for i in {1..250}; do
             if pgrep -x "spotify" > /dev/null 2>&1; then
-                sleep 0.5
+                sleep 0.2
                 killall -9 spotify > /dev/null 2>&1
                 exit 0
             fi
