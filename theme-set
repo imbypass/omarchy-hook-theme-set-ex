@@ -8,7 +8,7 @@ error() {
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
   for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
     if [[ -f "$hook" && -x "$hook" ]]; then
-      if ! "$hook"; then
+      if ! "$hook" "$@"; then
           error "Hook $(basename "$hook") failed!" >&2
       fi
     fi

@@ -109,7 +109,7 @@ create_dynamic_theme() {
             "modified": "${red}",
             "syntax": {
               "attribute": {
-                "color": "${red}"
+                "color": "${normal_white}"
               },
               "boolean": {
                 "color": "${green}"
@@ -161,6 +161,7 @@ if ! command -v zeditor >/dev/null 2>&1; then
     exit 0
 fi
 
+mkdir -p "$HOME/.config/zed/themes"
 if [ -f "$new_zed_file" ]; then
     cp -f "$new_zed_file" "$HOME/.config/zed/themes/omarchy.json"
 else
