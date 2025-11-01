@@ -11,3 +11,5 @@ if [[ ! -f "$output_file" ]]; then
 @define-color progress ${primary_foreground};
 EOF
 fi
+
+omarchy-restart-swayosd
