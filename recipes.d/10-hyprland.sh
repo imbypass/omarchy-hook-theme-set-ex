@@ -8,7 +8,7 @@ if [[ ! -f "$output_file" ]]; then
 # It is intended to be included in your main hyprland.conf.
 
 general {
-    col.active_border = rgba(${primary_foreground}ff)
+    col.active_border = rgba(${bright_yellow}ff)
     col.inactive_border = rgba(1f1f1fff)
     border_size = 2
 }
