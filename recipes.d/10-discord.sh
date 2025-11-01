@@ -566,6 +566,22 @@ div.folderIconWrapper__48112 {
     --base06: color-mix(in srgb, var(--base05) 95%, white) !important;
     --base07: color-mix(in srgb, var(--base05) 90%, white) !important;
 }
+
+/*--- Fix weird bug introduced by some weird font change ---*/
+.fieldTitle__1fed1,
+.item_aa8da2,
+.name__2ea32,
+.name__20a53,
+.label_c1e9c4,
+.headerText__99e7c,
+.header__56fec,
+.placeholder-cu2f9,
+.resultsGroup__56fec,
+.eyebrow_cf4812,
+.title_b6c092 {
+    letter-spacing: -1px;
+}
+
 EOF
 fi
 
