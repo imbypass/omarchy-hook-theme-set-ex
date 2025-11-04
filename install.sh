@@ -14,6 +14,6 @@ rm -rf /tmp/theme-hook
 chmod +x ~/.config/omarchy/hooks/theme-set
 chmod +x ~/.config/omarchy/hooks/theme-set.d/*
 
-omarchy-theme-set $(omarchy-theme-current)
+omarchy-theme-set "$(omarchy-theme-current)"
 
 omarchy-show-done
