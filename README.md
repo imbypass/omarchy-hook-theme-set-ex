@@ -9,7 +9,7 @@ A clean solution to extend your Omarchy theme to other apps.
 - GTK (Nautilus/Files)
 - Spotify
 - Zed
-- more to come..
+- more coming soon!
 
 ## Installation
 Run the following command to install the hook extension:
