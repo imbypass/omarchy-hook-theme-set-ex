@@ -3,12 +3,13 @@
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 possible_paths=(
-    "$HOME/.config/Vencord"
-    "$HOME/.config/vesktop"
-    "$HOME/.config/equipbop"
-    "/var/lib/flatpak/app/com.discordapp.Discord"
-    "/var/lib/flatpak/app/dev.vencord.Vesktop"
-    "/var/lib/flatpak/app/io.github.equicord.equibop"
+    "$HOME/.config/Vencord/themes"
+    "$HOME/.config/vesktop/themes"
+    "$HOME/.config/equipbop/themes"
+    "/var/lib/flatpak/app/com.discordapp.Discord/themes"
+    "/var/lib/flatpak/app/dev.vencord.Vesktop/themes"
+    "/var/lib/flatpak/app/io.github.equicord.equibop/themes",
+    "$HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes"
 )
 
 success() {
@@ -99,14 +100,14 @@ EOF
 check_for_theme() {
     if [[ -f $HOME/.config/omarchy/current/theme/vencord.theme.css ]]; then
         for path in "${possible_paths[@]}"; do
-            if [ -d "$path/themes" ]; then
-                if [[ -f "$path/themes/vencord.theme.css" ]]; then
-                    rm "$path/themes/vencord.theme.css"
+            if [ -d "$path" ]; then
+                if [[ -f "$path/vencord.theme.css" ]]; then
+                    rm "$path/vencord.theme.css"
                 fi
-                cp -f $HOME/.config/omarchy/current/theme/vencord.theme.css "$path/themes/vencord.theme.css"
+                cp -f $HOME/.config/omarchy/current/theme/vencord.theme.css "$path/vencord.theme.css"
             fi
 
-            for file in "$path"/themes/*; do
+            for file in "$path"/*; do
                 if [ -f "$file" ]; then
                     touch "$file"
                 fi
