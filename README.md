@@ -4,6 +4,12 @@ A clean solution to extend your Omarchy theme to other apps.
 
 ## Preview
 ![Preview](https://0x0.st/K_yY.png)
+## Themed Apps
+- Discord
+- GTK (Nautilus/Files)
+- Spotify
+- Zed
+- more to come..
 
 ## Installation
 Run the following command to install the hook extension:
