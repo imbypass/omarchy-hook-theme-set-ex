@@ -1294,7 +1294,6 @@ install_vscode_extension() {
     if [[ -z "$is_extension_installed" ]]; then
         code --install-extension $extension_name
         sleep 3
-    else
     fi
 }
 
