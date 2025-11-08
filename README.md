@@ -20,7 +20,7 @@ If they do *not* exist, a new set of each will be generated dynamically using th
 ## Installation
 Run the following command to install the hook extension:
 ```
-curl -fsSL https://imbypass.github.io/omarchy-hook-theme-set-ex/install.sh | bash
+curl -fsSL https://imbypass.github.io/omarchy-theme-hook/install.sh | bash
 ```
 ## Requirements
 Each of these scripts will have optional requirements that are needed in order to run properly. These requirements are listed below:
