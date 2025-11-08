@@ -1316,7 +1316,6 @@ modify_extension_manifest() {
         omarchy_entry='{"label": "Omarchy", "uiTheme": "vs-dark", "path": "./themes/base16/omarchy.json"}'
         new_manifest=$(cat "${install_path}/package.json" | jq --argjson theme "$omarchy_entry" '.contributes.themes += [$theme]')
         echo "$new_manifest" > "${install_path}/package.json"
-    else
     fi
 }
 
