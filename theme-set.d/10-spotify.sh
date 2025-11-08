@@ -62,8 +62,8 @@ EOF
 }
 
 change_spicetify_theme() {
-    spicetify config current_theme omarchy
-    spicetify config color_scheme base
+    spicetify config current_theme omarchy > /dev/null
+    spicetify config color_scheme base > /dev/null
 }
 
 create_dynamic_theme() {
