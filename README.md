@@ -15,7 +15,7 @@ If they do *not* exist, a new set of each will be generated dynamically using th
 - Spotify
 - Zed
 - VSCode (experimental)
-- more coming soon!
+- Steam (experimental)
 
 ## Installation
 Run the following command to install the hook extension:
@@ -45,6 +45,9 @@ Each of these scripts will have optional requirements that are needed in order t
 
 #### What if I encounter issues?
 If you encounter any issues, please open an issue on the GitHub repository.
+
+#### Can I contribute a theme?
+Yes! Please open a pull request on the GitHub repository. I try my best to review and merge them quickly.
 
 #### Will you share your waybar configuration?
 It's on GitHub.
