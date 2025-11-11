@@ -12,13 +12,6 @@ hex2rgb() {
     echo "$r, $g, $b"
 }
 
-rgb2hex() {
-    r=$1
-    g=$2
-    b=$3
-    printf "%02x%02x%02x" $r $g $b
-}
-
 success() {
     echo -e "\e[32m[SUCCESS]\e[0m $1"
 }
@@ -36,7 +29,7 @@ extract_from_section() {
         in_section && $1 == color {
             if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
                 hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
-                print "#" hex_part
+                print hex_part
                 exit
             }
         }
@@ -203,11 +196,11 @@ modify_install_script
 cp -p "$font_path" "$adwaita_location/adwaita/fonts/omarchy/omarchy_system.ttf"
 cp -p "$output_file" "$adwaita_location/adwaita/colorthemes/omarchy/omarchy.css"
 
-# cd $adwaita_location && ./install.py \
-#     --color-theme omarchy \
-#     --extras library/hide_whats_new \
-#     --font omarchy \
-#     --custom-css > /dev/null 2>&1
-#
-# success "Steam theme updated!"
+cd $adwaita_location && ./install.py \
+    --color-theme omarchy \
+    --extras library/hide_whats_new \
+    --font omarchy \
+    --custom-css > /dev/null 2>&1
+
+success "Steam theme updated!"
 exit
