@@ -203,11 +203,11 @@ modify_install_script
 cp -p "$font_path" "$adwaita_location/adwaita/fonts/omarchy/omarchy_system.ttf"
 cp -p "$output_file" "$adwaita_location/adwaita/colorthemes/omarchy/omarchy.css"
 
-cd $adwaita_location && ./install.py \
-    --color-theme omarchy \
-    --extras library/hide_whats_new \
-    --font omarchy \
-    --custom-css > /dev/null 2>&1
-
-success "Steam theme updated!"
+# cd $adwaita_location && ./install.py \
+#     --color-theme omarchy \
+#     --extras library/hide_whats_new \
+#     --font omarchy \
+#     --custom-css > /dev/null 2>&1
+#
+# success "Steam theme updated!"
 exit
