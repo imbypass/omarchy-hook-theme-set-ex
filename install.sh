@@ -4,6 +4,9 @@ rm -rf /tmp/theme-hook/
 
 git clone https://github.com/imbypass/omarchy-hook-theme-set-ex.git /tmp/theme-hook
 
+mv -f /tmp/theme-hook/install.sh ~/.local/bin/theme-hook-update
+chmod +x ~/.local/bin/theme-hook-update
+
 mv -f /tmp/theme-hook/theme-set ~/.config/omarchy/hooks/
 
 mkdir -p ~/.config/omarchy/hooks/theme-set.d/
