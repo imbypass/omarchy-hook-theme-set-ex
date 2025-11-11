@@ -1307,6 +1307,9 @@ find_extension_dir() {
             install_path=$(find "$path" -maxdepth 1 -type d -name "${extension_name}-*" | head -n1)
         fi
     done
+    if [[ -z "$install_path" ]]; then
+        exit 1
+    fi
 }
 
 modify_extension_manifest() {
