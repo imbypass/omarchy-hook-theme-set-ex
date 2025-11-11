@@ -98,6 +98,7 @@ inactive_colors=#ff${base04}, #ff${base01}, #ff${base01}, #ff${base05}, #ff${bas
 EOF
 fi
 
-cp "$new_qt_file" "$HOME/.config/qt6ct/colors/omarchy.conf"
+mkdir -p "$HOME/.config/qt6ct/colors"
+cp -p -f "$new_qt_file" "$HOME/.config/qt6ct/colors/omarchy.conf"
 
 exit 0
