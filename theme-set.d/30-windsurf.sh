@@ -27,8 +27,8 @@ extract_from_section() {
     ' "$input_file"
 }
 
-if ! command -v code >/dev/null 2>&1; then
-    warning "VS Code not found. Install 'code' to use.."
+if ! command -v windsurf >/dev/null 2>&1; then
+    warning "Windsurf not found. Install 'windsurf' to use.."
     exit 0
 fi
 
@@ -1299,8 +1299,7 @@ install_extension() {
 
 install_path=""
 vscode_paths=(
-    "$HOME/.vscode-oss/extensions/"
-    "$HOME/.vscode/extensions/"
+    "$HOME/.windsurf/extensions/"
 )
 find_extension_dir() {
     for path in "${vscode_paths[@]}"; do
@@ -1326,5 +1325,5 @@ modify_extension_manifest
 install_location="$install_path/themes/base16/omarchy.json"
 cp "$output_file" "$install_location"
 
-success "VS Code theme updated!"
+success "Windsurf theme updated!"
 exit
