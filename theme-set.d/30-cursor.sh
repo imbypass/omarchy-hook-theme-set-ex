@@ -50,7 +50,7 @@ bright_cyan=$(extract_from_section "colors.bright" "cyan")
 bright_white=$(extract_from_section "colors.bright" "white")
 
 if [[ ! -f "$output_file" ]]; then
-    cat > "$output_file" << EOF2
+    cat > "$output_file" << EOF
 {
     "\$schema": "vscode://schemas/color-theme",
     "name": "Omarchy",
@@ -1284,7 +1284,7 @@ if [[ ! -f "$output_file" ]]; then
     }
     ]
 }
-EOF2
+EOF
 fi
 
 extension_name="tintedtheming.base16-tinted-themes"
