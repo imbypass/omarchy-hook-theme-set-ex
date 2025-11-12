@@ -12,10 +12,13 @@ If they do *not* exist, a new set of each will be generated dynamically using th
 ## Themed Apps
 - Discord
 - GTK (Nautilus/Files)
+- QT6 (experimental)
 - Spotify
 - Zed
 - VSCode (experimental)
-- Steam (experimental)
+- Cursor (experimental)
+- Windsurf (experimental)
+- Steam
 
 ## Installation
 Run the following command to install the hook extension:
