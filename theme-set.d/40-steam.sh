@@ -35,15 +35,20 @@ extract_from_section() {
     ' "$input_file"
 }
 
+if ! command -v steam >/dev/null 2>&1; then
+    warning "Steam not found. Please install Steam to use.."
+    exit 0
+fi
+
 if ! command -v python >/dev/null 2>&1; then
-    warning "Python not found. Please install Python3 to use the Steam theme.."
+    warning "Python not found. Please install Python3 to use.."
     exit 0
 fi
 
 primary_foreground=$(extract_from_section "colors.primary" "foreground")
 primary_background=$(extract_from_section "colors.primary" "background")
-hex_primary_foreground=$(hex2rgb $primary_foreground)
-hex_primary_background=$(hex2rgb $primary_background)
+rgb_primary_foreground=$(hex2rgb $primary_foreground)
+rgb_primary_background=$(hex2rgb $primary_background)
 
 normal_black=$(extract_from_section "colors.normal" "black")
 normal_red=$(extract_from_section "colors.normal" "red")
@@ -53,14 +58,14 @@ normal_blue=$(extract_from_section "colors.normal" "blue")
 normal_magenta=$(extract_from_section "colors.normal" "magenta")
 normal_cyan=$(extract_from_section "colors.normal" "cyan")
 normal_white=$(extract_from_section "colors.normal" "white")
-hex_normal_black=$(hex2rgb $normal_black)
-hex_normal_red=$(hex2rgb $normal_red)
-hex_normal_green=$(hex2rgb $normal_green)
-hex_normal_yellow=$(hex2rgb $normal_yellow)
-hex_normal_blue=$(hex2rgb $normal_blue)
-hex_normal_magenta=$(hex2rgb $normal_magenta)
-hex_normal_cyan=$(hex2rgb $normal_cyan)
-hex_normal_white=$(hex2rgb $normal_white)
+rgb_normal_black=$(hex2rgb $normal_black)
+rgb_normal_red=$(hex2rgb $normal_red)
+rgb_normal_green=$(hex2rgb $normal_green)
+rgb_normal_yellow=$(hex2rgb $normal_yellow)
+rgb_normal_blue=$(hex2rgb $normal_blue)
+rgb_normal_magenta=$(hex2rgb $normal_magenta)
+rgb_normal_cyan=$(hex2rgb $normal_cyan)
+rgb_normal_white=$(hex2rgb $normal_white)
 
 bright_black=$(extract_from_section "colors.bright" "black")
 bright_red=$(extract_from_section "colors.bright" "red")
@@ -70,14 +75,14 @@ bright_blue=$(extract_from_section "colors.bright" "blue")
 bright_magenta=$(extract_from_section "colors.bright" "magenta")
 bright_cyan=$(extract_from_section "colors.bright" "cyan")
 bright_white=$(extract_from_section "colors.bright" "white")
-hex_bright_black=$(hex2rgb $bright_black)
-hex_bright_red=$(hex2rgb $bright_red)
-hex_bright_green=$(hex2rgb $bright_green)
-hex_bright_yellow=$(hex2rgb $bright_yellow)
-hex_bright_blue=$(hex2rgb $bright_blue)
-hex_bright_magenta=$(hex2rgb $bright_magenta)
-hex_bright_cyan=$(hex2rgb $bright_cyan)
-hex_bright_white=$(hex2rgb $bright_white)
+rgb_bright_black=$(hex2rgb $bright_black)
+rgb_bright_red=$(hex2rgb $bright_red)
+rgb_bright_green=$(hex2rgb $bright_green)
+rgb_bright_yellow=$(hex2rgb $bright_yellow)
+rgb_bright_blue=$(hex2rgb $bright_blue)
+rgb_bright_magenta=$(hex2rgb $bright_magenta)
+rgb_bright_cyan=$(hex2rgb $bright_cyan)
+rgb_bright_white=$(hex2rgb $bright_white)
 
 if [[ ! -f "$output_file" ]]; then
     cat > "$output_file" << EOF
@@ -90,57 +95,57 @@ Last Modified: $(date +"%Y-%m-%d")
 
 :root {
     /* The main accent color and the matching text value */
-    --adw-accent-bg-rgb: ${hex_normal_blue} !important;
-    --adw-accent-fg-rgb: ${hex_primary_background} !important;
-    --adw-accent-rgb: ${hex_normal_blue} !important;
+    --adw-accent-bg-rgb: ${rgb_normal_blue} !important;
+    --adw-accent-fg-rgb: ${rgb_primary_background} !important;
+    --adw-accent-rgb: ${rgb_normal_blue} !important;
 
     /* destructive-action buttons */
-    --adw-destructive-bg-rgb: ${hex_normal_red} !important;
-    --adw-destructive-fg-rgb: ${hex_primary_foreground} !important;
-    --adw-destructive-rgb: ${hex_normal_red} !important;
+    --adw-destructive-bg-rgb: ${rgb_normal_red} !important;
+    --adw-destructive-fg-rgb: ${rgb_primary_foreground} !important;
+    --adw-destructive-rgb: ${rgb_normal_red} !important;
 
     /* Levelbars, entries, labels and infobars. These don't need text colors */
-    --adw-success-bg-rgb: ${hex_normal_green} !important;
-    --adw-success-fg-rgb: ${hex_normal_black} !important;
-    --adw-success-rgb: ${hex_normal_green} !important;
+    --adw-success-bg-rgb: ${rgb_normal_green} !important;
+    --adw-success-fg-rgb: ${rgb_normal_black} !important;
+    --adw-success-rgb: ${rgb_normal_green} !important;
 
-    --adw-warning-bg-rgb: ${hex_bright_yellow} !important;
-    --adw-warning-fg-rgb: ${hex_primary_background} !important;
+    --adw-warning-bg-rgb: ${rgb_bright_yellow} !important;
+    --adw-warning-fg-rgb: ${rgb_primary_background} !important;
     --adw-warning-fg-a: 0.8 !important;
-    --adw-warning-rgb: ${hex_bright_yellow} !important;
+    --adw-warning-rgb: ${rgb_bright_yellow} !important;
 
-    --adw-error-bg-rgb: ${hex_normal_red} !important;
-    --adw-error-fg-rgb: ${hex_normal_black} !important;
-    --adw-error-rgb: ${hex_normal_red} !important;
+    --adw-error-bg-rgb: ${rgb_normal_red} !important;
+    --adw-error-fg-rgb: ${rgb_normal_black} !important;
+    --adw-error-rgb: ${rgb_normal_red} !important;
 
     /* Window */
-    --adw-window-bg-rgb: ${hex_primary_background} !important;
-    --adw-window-fg-rgb: ${hex_primary_foreground} !important;
+    --adw-window-bg-rgb: ${rgb_primary_background} !important;
+    --adw-window-fg-rgb: ${rgb_primary_foreground} !important;
 
     /* Views - e.g. text view or tree view */
-    --adw-view-bg-rgb: ${hex_normal_black} !important;
-    --adw-view-fg-rgb: ${hex_primary_foreground} !important;
+    --adw-view-bg-rgb: ${rgb_normal_black} !important;
+    --adw-view-fg-rgb: ${rgb_primary_foreground} !important;
 
     /* Header bar, search bar, tab bar */
-    --adw-headerbar-bg-rgb: ${hex_primary_background} !important;
-    --adw-headerbar-fg-rgb: ${hex_primary_foreground} !important;
-    --adw-headerbar-border-rgb: ${hex_bright_black} !important;
-    --adw-headerbar-backdrop-rgb: ${hex_normal_black} !important;
+    --adw-headerbar-bg-rgb: ${rgb_primary_background} !important;
+    --adw-headerbar-fg-rgb: ${rgb_primary_foreground} !important;
+    --adw-headerbar-border-rgb: ${rgb_bright_black} !important;
+    --adw-headerbar-backdrop-rgb: ${rgb_normal_black} !important;
     --adw-headerbar-shade-rgb: 0, 0, 0 !important;
     --adw-headerbar-shade-a: 0.36 !important;
     --adw-headerbar-darker-shade-rgb: 0, 0, 0 !important;
     --adw-headerbar-darker-shade-a: 0.9 !important;
 
     /* Split pane views */
-    --adw-sidebar-bg-rgb: ${hex_primary_background} !important;
-    --adw-sidebar-fg-rgb: ${hex_primary_foreground} !important;
-    --adw-sidebar-backdrop-rgb: ${hex_bright_black} !important;
+    --adw-sidebar-bg-rgb: ${rgb_primary_background} !important;
+    --adw-sidebar-fg-rgb: ${rgb_primary_foreground} !important;
+    --adw-sidebar-backdrop-rgb: ${rgb_bright_black} !important;
     --adw-sidebar-shade-rgb: 0, 0, 0 !important;
     --adw-sidebar-shade-a: 0.36 !important;
 
-    --adw-secondary-sidebar-bg-rgb: ${hex_primary_background} !important;
-    --adw-secondary-sidebar-fg-rgb: ${hex_primary_foreground} !important;
-    --adw-secondary-sidebar-backdrop-rgb: ${hex_bright_black} !important;
+    --adw-secondary-sidebar-bg-rgb: ${rgb_primary_background} !important;
+    --adw-secondary-sidebar-fg-rgb: ${rgb_primary_foreground} !important;
+    --adw-secondary-sidebar-backdrop-rgb: ${rgb_bright_black} !important;
     --adw-secondary-sidebar-shade-rgb: 0, 0, 0 !important;
     --adw-secondary-sidebar-shade-a: 0.36 !important;
 
@@ -152,16 +157,16 @@ Last Modified: $(date +"%Y-%m-%d")
     --adw-card-shade-a: 0.36 !important;
 
     /* Dialogs */
-    --adw-dialog-bg-rgb: ${hex_normal_black} !important;
-    --adw-dialog-fg-rgb: ${hex_primary_foreground} !important;
+    --adw-dialog-bg-rgb: ${rgb_normal_black} !important;
+    --adw-dialog-fg-rgb: ${rgb_primary_foreground} !important;
 
     /* Popovers */
-    --adw-popover-bg-rgb: ${hex_normal_black} !important;
-    --adw-popover-fg-rgb: ${hex_primary_foreground} !important;
+    --adw-popover-bg-rgb: ${rgb_normal_black} !important;
+    --adw-popover-fg-rgb: ${rgb_primary_foreground} !important;
 
     /* Thumbnails */
-    --adw-thumbnail-bg-rgb: ${hex_normal_black} !important;
-    --adw-popover-fg-rgb: ${hex_primary_foreground} !important;
+    --adw-thumbnail-bg-rgb: ${rgb_normal_black} !important;
+    --adw-popover-fg-rgb: ${rgb_primary_foreground} !important;
 
     /* Miscellaneous */
     --adw-shade-rgb: 0, 0, 0 !important;

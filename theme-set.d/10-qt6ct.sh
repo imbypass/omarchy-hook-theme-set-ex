@@ -53,6 +53,11 @@ extract_from_section() {
     ' "$input_file"
 }
 
+if ! command -v qt6ct >/dev/null 2>&1; then
+    warning "Qt6ct not found. Install 'qt6ct' to use..\n"
+    exit 0
+fi
+
 background=$(extract_from_section "colors.primary" "background")
 foreground=$(extract_from_section "colors.primary" "foreground")
 black=$(extract_from_section "colors.normal" "black")
