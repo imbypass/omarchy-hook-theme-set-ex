@@ -13,7 +13,7 @@ find_default_profile() {
         in_install && /^Default=/ { print $2; exit }
     ' "$HOME/.mozilla/firefox/profiles.ini"
 }
-default_profile="$HOME/.mozilla/firefox/$(basename $(find_default_profile))"
+default_profile="$HOME/.mozilla/firefox/$(find_default_profile)"
 
 enable_userchrome() {
     local prefs_file="$default_profile/prefs.js"
