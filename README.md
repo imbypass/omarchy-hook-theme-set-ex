@@ -1,13 +1,21 @@
 
-# Omarchy Theme Hook
-A clean solution to extend your Omarchy theme to other apps.
+<div align="center">
 
-These scripts will check your Omarchy theme for the existence of any extended theme files and will install them automatically for you when a theme is applied.
-If a theme is applied that contains extended theme files, they will be copied to their proper folders.
-If they do *not* exist, a new set of each will be generated dynamically using the theme's Alacritty config and copied to their proper folders.
+# Omarchy Theme Hook
+   
+   ![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge)
+   ![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge)
+   ![GitHub Last Commit](https://img.shields.io/github/last-commit/imbypass/omarchy-theme-hook?style=for-the-badge)
+
+   **A lightweight, clean solution to extending your Omarchy theme to other apps.**
+
+</div>
 
 ## Preview
 ![Preview](https://0x0.st/K_yY.png)
+
+## Overview
+The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarchy theme to other apps. It will check your Omarchy theme for the existence of any extended theme files and will install them automatically for you when a theme is applied. If a theme is applied that contains extended theme files, they will be copied to their proper folders. If the theme does *not* contain any extended theme files, a new set of each will be generated dynamically using the theme's Alacritty config and copied to their proper folders.
 
 ## Themed Apps
 - Firefox
@@ -18,19 +26,26 @@ If they do *not* exist, a new set of each will be generated dynamically using th
 - Steam
 - VSCode/Cursor/Windsurf (experimental)
 
-## Installation
-Run the following command to install the hook extension:
+## Installing
+You can install the theme hook by running the following command:
 ```
 curl -fsSL https://imbypass.github.io/omarchy-theme-hook/install.sh | bash
 ```
-## Requirements
-Each of these scripts will have optional requirements that are needed in order to run properly. These requirements are listed below:
-- Third-party Discord client *(if your client supports theming and isn't listed, please open an issue to get it added.)*
-- Spicetify is needed to theme Spotify. *(Make sure this is installed before trying to use this.)*
+
+## Updating
+You can update the theme hook by running the following command:
+```
+theme-hook-update
+```
 
 ## FAQ
+
+#### I installed the hook, but none of my apps are theming!
+1. The theme hook will generate and install themes, but not apply them.
+2. You need to manually set the theme to "Omarchy" one time for each app that supports theming.
+
 #### My Discord isn't theming!
-1. Make sure you are using an aftermarket Discord client, like Vencord, Equicord, or Vesktop.
+1. Make sure you are using a third-party Discord client, like Vesktop or Equibop.
 2. Apply your desired theme in Omarchy.
 3. Enable the Omarchy theme in Discord.
 
@@ -39,16 +54,12 @@ Each of these scripts will have optional requirements that are needed in order t
 2. See a [[note for Linux users]](https://spicetify.app/docs/advanced-usage/installation#note-for-linux-users).
 3. Apply your desired theme in Omarchy.
 
-#### I installed the hook, but none of my apps are theming!
-1. The theme hook will generate and install themes, but not apply them.
-2. You need to manually set the theme to "Omarchy" one time for each app that supports theming.
-
 #### What if I encounter issues?
 If you encounter any issues, please open an issue on the GitHub repository.
-
-#### Can I contribute a theme?
-Yes! Please open a pull request on the GitHub repository. I try my best to review and merge them quickly.
 
 #### Will you share your waybar configuration?
 It's on GitHub.
 https://github.com/imbypass/omarchy-waybar-bepi
+
+## Contributing
+I actively encourage everyone to contribute a theme for their favorite application. If you have a theme for an application, an upgrade to an existing script, or even just feature ideas, please open a pull or a feature request on the GitHub repository. I try my best to review and merge them quickly.
