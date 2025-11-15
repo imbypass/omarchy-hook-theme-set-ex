@@ -7,15 +7,13 @@ success() {
 }
 
 warning() {
-    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
+    echo -e "\033[0;33m[WARNING]\e[0m $1"
 }
 
 error() {
     echo -e "\e[31m[ERROR]\e[0m $1"
     exit 1
 }
-
-export -f success warning error
 
 hex2rgb() {
     hex_input=$1
@@ -46,8 +44,6 @@ change_shade() {
 
     rgb2hex $r $g $b
 }
-
-export -f rgb2hex hex2rgb change_shade
 
 extract_from_section() {
     local section="$1"
@@ -84,9 +80,35 @@ bright_magenta=$(extract_from_section "colors.bright" "magenta")
 bright_cyan=$(extract_from_section "colors.bright" "cyan")
 bright_white=$(extract_from_section "colors.bright" "white")
 
+rgb_primary_foreground=$(hex2rgb $primary_foreground)
+rgb_primary_background=$(hex2rgb $primary_background)
+rgb_normal_black=$(hex2rgb $normal_black)
+rgb_normal_red=$(hex2rgb $normal_red)
+rgb_normal_green=$(hex2rgb $normal_green)
+rgb_normal_yellow=$(hex2rgb $normal_yellow)
+rgb_normal_blue=$(hex2rgb $normal_blue)
+rgb_normal_magenta=$(hex2rgb $normal_magenta)
+rgb_normal_cyan=$(hex2rgb $normal_cyan)
+rgb_normal_white=$(hex2rgb $normal_white)
+rgb_bright_black=$(hex2rgb $bright_black)
+rgb_bright_red=$(hex2rgb $bright_red)
+rgb_bright_green=$(hex2rgb $bright_green)
+rgb_bright_yellow=$(hex2rgb $bright_yellow)
+rgb_bright_blue=$(hex2rgb $bright_blue)
+rgb_bright_magenta=$(hex2rgb $bright_magenta)
+rgb_bright_cyan=$(hex2rgb $bright_cyan)
+rgb_bright_white=$(hex2rgb $bright_white)
+
+export -f success warning error
+export -f rgb2hex hex2rgb change_shade
+
+export primary_background primary_foreground
 export normal_black normal_red normal_green normal_yellow normal_blue normal_magenta normal_cyan normal_white
 export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
-export primary_background primary_foreground
+
+export rgb_primary_foreground rgb_primary_background
+export rgb_normal_red rgb_normal_green rgb_normal_yellow rgb_normal_blue rgb_normal_magenta rgb_normal_cyan rgb_normal_white
+export rgb_bright_red rgb_bright_green rgb_bright_yellow rgb_bright_blue rgb_bright_magenta rgb_bright_cyan rgb_bright_white
 
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
   for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
