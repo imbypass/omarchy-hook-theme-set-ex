@@ -5,7 +5,7 @@ possible_paths=(
     "$HOME/.config/Vencord/themes"
     "$HOME/.config/vesktop/themes"
     "$HOME/.config/Equicord/themes"
-    "$HOME/.config/equipbop/themes"
+    "$HOME/.config/equibop/themes"
     "/var/lib/flatpak/app/com.discordapp.Discord/themes"
     "/var/lib/flatpak/app/dev.vencord.Vesktop/themes"
     "/var/lib/flatpak/app/io.github.equicord.equibop/themes",
