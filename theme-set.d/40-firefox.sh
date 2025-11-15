@@ -1,39 +1,38 @@
 #!/bin/bash
 
+output_file="$HOME/.config/omarchy/current/theme/firefox.css"
+
 if ! command -v firefox >/dev/null 2>&1; then
     warning "Firefox not found. Skipping.."
     exit 0
 fi
 
-find_firefox_profile() {
+find_default_profile() {
     awk -F= '
         /^\[Install/ { in_install=1 }
         in_install && /^Default=/ { print $2; exit }
     ' "$HOME/.mozilla/firefox/profiles.ini"
 }
+default_profile="$HOME/.mozilla/firefox/$(basename $(find_default_profile))"
 
-firefox_profile=$(find_firefox_profile)
-firefox_path="$HOME/.mozilla/firefox/$(basename $firefox_profile)"
-output_file="$firefox_path/chrome/colors.css"
-
-mkdir -p "$firefox_path"
-mkdir -p "$firefox_path/chrome"
-
-enable_firefox_userchrome() {
-    local prefs_file="$firefox_path/prefs.js"
+enable_userchrome() {
+    local prefs_file="$default_profile/prefs.js"
     local pref_name="toolkit.legacyUserProfileCustomizations.stylesheets"
-    local pref_line="user_pref(\"$pref_name\", true);"
 
     if grep -q "user_pref(\"$pref_name\"" "$prefs_file"; then
         if grep -q "user_pref(\"$pref_name\", false)" "$prefs_file"; then
             sed -i.bak "s/user_pref(\"$pref_name\", false);/user_pref(\"$pref_name\", true);/" "$prefs_file"
         fi
     else
-        echo "$pref_line" >> "$prefs_file"
+        echo "user_pref(\"$pref_name\", true);" >> "$prefs_file"
     fi
 }
+enable_userchrome
 
-cat > "$output_file" << EOF
+mkdir -p "$default_profile/chrome"
+
+if [[ ! -f "$output_file" ]]; then
+    cat > "$output_file" << EOF
 :root {
 --color00: #${primary_background};
 --color01: #${primary_background};
@@ -53,9 +52,11 @@ cat > "$output_file" << EOF
 --color0F: #${bright_red};
 }
 EOF
+fi
+cp "$output_file" "$default_profile/chrome/colors.css"
 
-if [[ ! -f "$firefox_path/chrome/userChrome.css" ]]; then
-    cat > "$firefox_path/chrome/userChrome.css" << EOF
+if [[ ! -f "$default_profile/chrome/userChrome.css" ]]; then
+    cat > "$default_profile/chrome/userChrome.css" << EOF
 @import url("./colors.css");
 
 :root {
@@ -235,8 +236,8 @@ splitter#sidebar-tools-and-extensions-splitter {
 EOF
 fi
 
-if [[ ! -f "$firefox_path/chrome/userContent.css" ]]; then
-    cat > "$firefox_path/chrome/userContent.css" <<EOF
+if [[ ! -f "$default_profile/chrome/userContent.css" ]]; then
+    cat > "$default_profile/chrome/userContent.css" <<EOF
 @import url("./colors.css");
 
 :root {
@@ -297,8 +298,6 @@ body {
 }
 EOF
 fi
-
-enable_firefox_userchrome
 
 if pgrep -x "firefox" > /dev/null; then
     pkill -x "firefox" > /dev/null
