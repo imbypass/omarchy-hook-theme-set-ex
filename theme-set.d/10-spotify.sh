@@ -83,7 +83,7 @@ EOF
 }
 
 if ! command -v spicetify >/dev/null 2>&1; then
-    warning "Spicetify not found. Install 'spicetify-cli' to use..\n"
+    warning "Spicetify not found. Install 'spicetify-cli' to use.."
     exit 0
 fi
 
