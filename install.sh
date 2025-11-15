@@ -2,8 +2,6 @@
 
 set -e
 
-trap 'echo ""; echo -e "\033[0;31mSomething went wrong during the update.\n\nPlease open an issue on GitHub."' ERR
-
 omarchy-show-logo
 
 rm -rf /tmp/theme-hook/
