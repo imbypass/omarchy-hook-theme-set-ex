@@ -4,6 +4,7 @@ output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 possible_paths=(
     "$HOME/.config/Vencord/themes"
     "$HOME/.config/vesktop/themes"
+    "$HOME/.config/Equicord/themes"
     "$HOME/.config/equipbop/themes"
     "/var/lib/flatpak/app/com.discordapp.Discord/themes"
     "/var/lib/flatpak/app/dev.vencord.Vesktop/themes"
