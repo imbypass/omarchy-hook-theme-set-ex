@@ -4,7 +4,7 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/vscode_colors.json"
 
 if ! command -v code >/dev/null 2>&1; then
-    warning "VS Code not found. Install 'code' to use.."
+    warning "VS Code not found. Skipping.."
     exit 0
 fi
 

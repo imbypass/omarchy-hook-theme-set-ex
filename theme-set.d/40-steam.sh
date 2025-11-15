@@ -4,33 +4,14 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/steam.css"
 
 if ! command -v steam >/dev/null 2>&1; then
-    warning "Steam not found. Please install Steam to use.."
+    warning "Steam not found. Skipping.."
     exit 0
 fi
 
 if ! command -v python >/dev/null 2>&1; then
-    warning "Python not found. Please install Python3 to use.."
+    warning "Python not found. Skipping.."
     exit 0
 fi
-
-rgb_primary_foreground=$(hex2rgb $primary_foreground)
-rgb_primary_background=$(hex2rgb $primary_background)
-rgb_normal_black=$(hex2rgb $normal_black)
-rgb_normal_red=$(hex2rgb $normal_red)
-rgb_normal_green=$(hex2rgb $normal_green)
-rgb_normal_yellow=$(hex2rgb $normal_yellow)
-rgb_normal_blue=$(hex2rgb $normal_blue)
-rgb_normal_magenta=$(hex2rgb $normal_magenta)
-rgb_normal_cyan=$(hex2rgb $normal_cyan)
-rgb_normal_white=$(hex2rgb $normal_white)
-rgb_bright_black=$(hex2rgb $bright_black)
-rgb_bright_red=$(hex2rgb $bright_red)
-rgb_bright_green=$(hex2rgb $bright_green)
-rgb_bright_yellow=$(hex2rgb $bright_yellow)
-rgb_bright_blue=$(hex2rgb $bright_blue)
-rgb_bright_magenta=$(hex2rgb $bright_magenta)
-rgb_bright_cyan=$(hex2rgb $bright_cyan)
-rgb_bright_white=$(hex2rgb $bright_white)
 
 if [[ ! -f "$output_file" ]]; then
     cat > "$output_file" << EOF

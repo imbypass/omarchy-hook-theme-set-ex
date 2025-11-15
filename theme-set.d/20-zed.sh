@@ -114,7 +114,7 @@ EOF
 }
 
 if ! command -v zeditor >/dev/null 2>&1; then
-    warning "Zed not found. Install 'zed' to use.."
+    warning "Zed not found. Skipping.."
     exit 0
 fi
 

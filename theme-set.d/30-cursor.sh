@@ -4,7 +4,7 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/cursor_colors.json"
 
 if ! command -v cursor >/dev/null 2>&1; then
-    warning "Cursor not found. Install 'cursor' to use.."
+    warning "Cursor not found. Skipping.."
     exit 0
 fi
 

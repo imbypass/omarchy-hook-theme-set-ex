@@ -4,7 +4,7 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/vscode_colors.json"
 
 if ! command -v windsurf >/dev/null 2>&1; then
-    warning "Windsurf not found. Install 'windsurf' to use.."
+    warning "Windsurf not found. Skipping.."
     exit 0
 fi
 

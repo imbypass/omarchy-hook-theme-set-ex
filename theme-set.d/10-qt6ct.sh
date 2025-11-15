@@ -4,7 +4,7 @@ input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 new_qt_file="$HOME/.config/omarchy/current/theme/qt6ct.conf"
 
 if ! command -v qt6ct >/dev/null 2>&1; then
-    warning "Qt6ct not found. Install 'qt6ct' to use.."
+    warning "Qt6ct not found. Skipping.."
     exit 0
 fi
 
