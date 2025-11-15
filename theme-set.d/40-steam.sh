@@ -3,38 +3,6 @@
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/steam.css"
 
-hex2rgb() {
-    hex_input=$1
-    r=$((16#${hex_input:0:2}))
-    g=$((16#${hex_input:2:2}))
-    b=$((16#${hex_input:4:2}))
-    echo "$r, $g, $b"
-}
-
-success() {
-    echo -e "\e[32m[SUCCESS]\e[0m $1"
-}
-
-warning() {
-    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
-}
-
-extract_from_section() {
-    local section="$1"
-    local color_name="$2"
-    awk -v section="[$section]" -v color="$color_name" '
-        $0 == section { in_section=1; next }
-        /^\[/ { in_section=0 }
-        in_section && $1 == color {
-            if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
-                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
-                print hex_part
-                exit
-            }
-        }
-    ' "$input_file"
-}
-
 if ! command -v steam >/dev/null 2>&1; then
     warning "Steam not found. Please install Steam to use.."
     exit 0
@@ -45,19 +13,8 @@ if ! command -v python >/dev/null 2>&1; then
     exit 0
 fi
 
-primary_foreground=$(extract_from_section "colors.primary" "foreground")
-primary_background=$(extract_from_section "colors.primary" "background")
 rgb_primary_foreground=$(hex2rgb $primary_foreground)
 rgb_primary_background=$(hex2rgb $primary_background)
-
-normal_black=$(extract_from_section "colors.normal" "black")
-normal_red=$(extract_from_section "colors.normal" "red")
-normal_green=$(extract_from_section "colors.normal" "green")
-normal_yellow=$(extract_from_section "colors.normal" "yellow")
-normal_blue=$(extract_from_section "colors.normal" "blue")
-normal_magenta=$(extract_from_section "colors.normal" "magenta")
-normal_cyan=$(extract_from_section "colors.normal" "cyan")
-normal_white=$(extract_from_section "colors.normal" "white")
 rgb_normal_black=$(hex2rgb $normal_black)
 rgb_normal_red=$(hex2rgb $normal_red)
 rgb_normal_green=$(hex2rgb $normal_green)
@@ -66,15 +23,6 @@ rgb_normal_blue=$(hex2rgb $normal_blue)
 rgb_normal_magenta=$(hex2rgb $normal_magenta)
 rgb_normal_cyan=$(hex2rgb $normal_cyan)
 rgb_normal_white=$(hex2rgb $normal_white)
-
-bright_black=$(extract_from_section "colors.bright" "black")
-bright_red=$(extract_from_section "colors.bright" "red")
-bright_green=$(extract_from_section "colors.bright" "green")
-bright_yellow=$(extract_from_section "colors.bright" "yellow")
-bright_blue=$(extract_from_section "colors.bright" "blue")
-bright_magenta=$(extract_from_section "colors.bright" "magenta")
-bright_cyan=$(extract_from_section "colors.bright" "cyan")
-bright_white=$(extract_from_section "colors.bright" "white")
 rgb_bright_black=$(hex2rgb $bright_black)
 rgb_bright_red=$(hex2rgb $bright_red)
 rgb_bright_green=$(hex2rgb $bright_green)
@@ -216,9 +164,9 @@ install_steam_theme
 modify_steam_theme
 modify_install_script
 
-cp -p -f -v "$font_path" "$adwaita_location/adwaita/fonts/omarchy/omarchy.ttf"
+cp -p -f "$font_path" "$adwaita_location/adwaita/fonts/omarchy/omarchy.ttf"
 
-cp -p -f -v "$output_file" "$adwaita_location/adwaita/colorthemes/omarchy/omarchy.css"
+cp -p -f "$output_file" "$adwaita_location/adwaita/colorthemes/omarchy/omarchy.css"
 
 cd $adwaita_location && ./install.py \
     --color-theme omarchy \

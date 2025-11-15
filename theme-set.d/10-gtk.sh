@@ -7,57 +7,18 @@ gtk4_dir="$HOME/.config/gtk-4.0"
 gtk3_file="$gtk3_dir/gtk.css"
 gtk4_file="$gtk4_dir/gtk.css"
 
-success() {
-    echo -e "\e[32m[SUCCESS]\e[0m $1"
-}
-
-extract_from_section() {
-    local section="$1"
-    local color_name="$2"
-    awk -v section="[$section]" -v color="$color_name" '
-        $0 == section { in_section=1; next }
-        /^\[/ { in_section=0 }
-        in_section && $1 == color {
-            if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
-                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
-                print "#" hex_part
-                exit
-            }
-        }
-    ' "$input_file"
-}
-
 create_dynamic_theme() {
-    background=$(extract_from_section "colors.primary" "background")
-    foreground=$(extract_from_section "colors.primary" "foreground")
-    black=$(extract_from_section "colors.normal" "black")
-    red=$(extract_from_section "colors.normal" "red")
-    green=$(extract_from_section "colors.normal" "green")
-    yellow=$(extract_from_section "colors.normal" "yellow")
-    blue=$(extract_from_section "colors.normal" "blue")
-    magenta=$(extract_from_section "colors.normal" "magenta")
-    cyan=$(extract_from_section "colors.normal" "cyan")
-    white=$(extract_from_section "colors.normal" "white")
-    bright_black=$(extract_from_section "colors.bright" "black")
-    bright_red=$(extract_from_section "colors.bright" "red")
-    bright_green=$(extract_from_section "colors.bright" "green")
-    bright_yellow=$(extract_from_section "colors.bright" "yellow")
-    bright_blue=$(extract_from_section "colors.bright" "blue")
-    bright_magenta=$(extract_from_section "colors.bright" "magenta")
-    bright_cyan=$(extract_from_section "colors.bright" "cyan")
-    bright_white=$(extract_from_section "colors.bright" "white")
-
     cat > "$new_gtk_file" << EOF
-    @define-color background     ${background};
-    @define-color foreground     ${foreground};
-    @define-color black          ${background};
-    @define-color red            ${red};
-    @define-color green          ${green};
-    @define-color yellow         ${yellow};
-    @define-color blue           ${blue};
-    @define-color magenta        ${magenta};
-    @define-color cyan           ${cyan};
-    @define-color white          ${white};
+    @define-color background     ${primary_background};
+    @define-color foreground     ${primary_foreground};
+    @define-color black          ${primary_background};
+    @define-color red            ${normal_red};
+    @define-color green          ${normal_green};
+    @define-color yellow         ${normal_yellow};
+    @define-color blue           ${normal_blue};
+    @define-color magenta        ${normal_magenta};
+    @define-color cyan           ${normal_cyan};
+    @define-color white          ${normal_white};
     @define-color bright_black   ${bright_black};
     @define-color bright_red     ${bright_red};
     @define-color bright_green   ${bright_green};

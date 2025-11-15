@@ -12,43 +12,7 @@ possible_paths=(
     "$HOME/.var/app/dev.vencord.Vesktop/config/vesktop/themes"
 )
 
-success() {
-    echo -e "\e[32m[SUCCESS]\e[0m $1"
-}
-
-extract_from_section() {
-    local section="$1"
-    local color_name="$2"
-    awk -v section="[$section]" -v color="$color_name" '
-        $0 == section { in_section=1; next }
-        /^\[/ { in_section=0 }
-        in_section && $1 == color {
-            if (match($0, /(#|0x)[0-9a-fA-F]{6}/)) {
-                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
-                print "#" hex_part
-                exit
-            }
-        }
-    ' "$input_file"
-}
-
 create_dynamic_theme() {
-    color00=$(extract_from_section "colors.primary" "background")
-    color01=$(extract_from_section "colors.normal" "black")
-    color02=$(extract_from_section "colors.bright" "black")
-    color03=$(extract_from_section "colors.normal" "white")
-    color04=$(extract_from_section "colors.bright" "white")
-    color05=$(extract_from_section "colors.primary" "foreground")
-    color06=$(extract_from_section "colors.bright" "white")
-    color07=$(extract_from_section "colors.bright" "white")
-    color08=$(extract_from_section "colors.normal" "red")
-    color09=$(extract_from_section "colors.normal" "yellow")
-    color0A=$(extract_from_section "colors.bright" "yellow")
-    color0B=$(extract_from_section "colors.normal" "green")
-    color0C=$(extract_from_section "colors.normal" "cyan")
-    color0D=$(extract_from_section "colors.normal" "blue")
-    color0E=$(extract_from_section "colors.normal" "magenta")
-    color0F=$(extract_from_section "colors.bright" "red")
 
     cat > "$output_file" << EOF
     /**
@@ -61,22 +25,22 @@ create_dynamic_theme() {
     @import url("https://imbypass.github.io/base16-discord/omarchy-discord.theme.css");
 
     :root {
-        --color00: ${color00};
-        --color01: ${color00};
-        --color02: ${color00};
-        --color03: ${color03};
-        --color04: ${color07};
-        --color05: ${color07};
-        --color06: ${color07};
-        --color07: ${color07};
-        --color08: ${color07};
-        --color09: ${color09};
-        --color10: ${color0A};
-        --color11: ${color0B};
-        --color12: ${color0C};
-        --color13: ${color0D};
-        --color14: ${color0E};
-        --color15: ${color09};
+        --color00: #${primary_background};
+        --color01: #${primary_background};
+        --color02: #${primary_background};
+        --color03: #${normal_white};
+        --color04: #${bright_white};
+        --color05: #${bright_white};
+        --color06: #${bright_white};
+        --color07: #${bright_white};
+        --color08: #${bright_white};
+        --color09: #${normal_yellow};
+        --color10: #${bright_yellow};
+        --color11: #${normal_green};
+        --color12: #${normal_cyan};
+        --color13: #${normal_blue};
+        --color14: #${normal_magenta};
+        --color15: #${normal_yellow};
     }
 EOF
 

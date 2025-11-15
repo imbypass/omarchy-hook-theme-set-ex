@@ -1,9 +1,92 @@
 #!/bin/bash
 
+input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
+
+success() {
+    echo -e "\e[32m[SUCCESS]\e[0m $1"
+}
+
+warning() {
+    echo -e "\033[0;33m[WARNING]\033[0;37m $1"
+}
+
 error() {
     echo -e "\e[31m[ERROR]\e[0m $1"
     exit 1
 }
+
+export -f success warning error
+
+hex2rgb() {
+    hex_input=$1
+    r=$((16#${hex_input:0:2}))
+    g=$((16#${hex_input:2:2}))
+    b=$((16#${hex_input:4:2}))
+    echo "$r, $g, $b"
+}
+
+rgb2hex() {
+    r=$1
+    g=$2
+    b=$3
+    printf "%02x%02x%02x" $r $g $b
+}
+
+change_shade() {
+    local hex_color=$1
+    local shade=$2
+    hex_input=$1
+    r=$((16#${hex_input:0:2}))
+    g=$((16#${hex_input:2:2}))
+    b=$((16#${hex_input:4:2}))
+
+    r=$((r + shade))
+    g=$((g + shade))
+    b=$((b + shade))
+
+    rgb2hex $r $g $b
+}
+
+export -f rgb2hex hex2rgb change_shade
+
+extract_from_section() {
+    local section="$1"
+    local color_name="$2"
+    awk -v section="[$section]" -v color="$color_name" '
+        $0 == section { in_section=1; next }
+        /^\[/ { in_section=0 }
+        in_section && $1 == color {
+            if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
+                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
+                print hex_part
+                exit
+            }
+        }
+    ' "$input_file"
+}
+
+primary_foreground=$(extract_from_section "colors.primary" "foreground")
+primary_background=$(extract_from_section "colors.primary" "background")
+normal_black=$(extract_from_section "colors.normal" "black")
+normal_red=$(extract_from_section "colors.normal" "red")
+normal_green=$(extract_from_section "colors.normal" "green")
+normal_yellow=$(extract_from_section "colors.normal" "yellow")
+normal_blue=$(extract_from_section "colors.normal" "blue")
+normal_magenta=$(extract_from_section "colors.normal" "magenta")
+normal_cyan=$(extract_from_section "colors.normal" "cyan")
+normal_white=$(extract_from_section "colors.normal" "white")
+bright_black=$(extract_from_section "colors.bright" "black")
+bright_red=$(extract_from_section "colors.bright" "red")
+bright_green=$(extract_from_section "colors.bright" "green")
+bright_yellow=$(extract_from_section "colors.bright" "yellow")
+bright_blue=$(extract_from_section "colors.bright" "blue")
+bright_magenta=$(extract_from_section "colors.bright" "magenta")
+bright_cyan=$(extract_from_section "colors.bright" "cyan")
+bright_white=$(extract_from_section "colors.bright" "white")
+
+export normal_black normal_red normal_green normal_yellow normal_blue normal_magenta normal_cyan normal_white
+export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
+export primary_background primary_foreground
 
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
   for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
