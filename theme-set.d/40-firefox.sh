@@ -8,32 +8,21 @@ if ! command -v firefox >/dev/null 2>&1; then
 fi
 
 find_firefox_profile() {
-    local profiles_ini="$HOME/.mozilla/firefox/profiles.ini"
-    local current_path=""
-
-    while IFS= read -r line; do
-        if [[ "$line" =~ ^Path=(.+)$ ]]; then
-            current_path="${BASH_REMATCH[1]}"
-        fi
-
-        if [[ "$line" =~ ^Default=1$ && -n "$current_path" ]]; then
-            echo "$current_path"
-            break
-        fi
-
-        if [[ "$line" =~ ^\[.*\]$ ]]; then
-            current_path=""
-        fi
-    done < "$profiles_ini"
+    awk -F= '
+        /^\[Install/ { in_install=1 }
+        in_install && /^Default=/ { print $2; exit }
+    ' "$HOME/.mozilla/firefox/profiles.ini"
 }
 
 firefox_profile=$(find_firefox_profile)
-firefox_path="$HOME/.mozilla/firefox/$(basename $firefox_profile)/chrome"
-output_file="$firefox_path/colors.css"
+firefox_path="$HOME/.mozilla/firefox/$(basename $firefox_profile)"
+output_file="$firefox_path/chrome/colors.css"
+
+mkdir -p "$firefox_path"
+mkdir -p "$firefox_path/chrome"
 
 enable_firefox_userchrome() {
-    local prefs_file="$firefox_path/../prefs.js"
-    echo $prefs_file
+    local prefs_file="$firefox_path/prefs.js"
     local pref_name="toolkit.legacyUserProfileCustomizations.stylesheets"
     local pref_line="user_pref(\"$pref_name\", true);"
 
@@ -45,11 +34,6 @@ enable_firefox_userchrome() {
         echo "$pref_line" >> "$prefs_file"
     fi
 }
-
-if ! command -v firefox >/dev/null 2>&1; then
-    printf "\033[0;33m[WARNING]\033[0;37m Firefox not found. Skipping..\n"
-    exit 0
-fi
 
 cat > "$output_file" << EOF
 :root {
@@ -72,8 +56,8 @@ cat > "$output_file" << EOF
 }
 EOF
 
-if [[ ! -f "$firefox_path/userChrome.css" ]]; then
-    cat > "$firefox_path/userChrome.css" << EOF
+if [[ ! -f "$firefox_path/chrome/userChrome.css" ]]; then
+    cat > "$firefox_path/chrome/userChrome.css" << EOF
 @import url("./colors.css");
 
 :root {
@@ -253,8 +237,8 @@ splitter#sidebar-tools-and-extensions-splitter {
 EOF
 fi
 
-if [[ ! -f "$firefox_path/userContent.css" ]]; then
-    cat > "$firefox_path/userContent.css" <<EOF
+if [[ ! -f "$firefox_path/chrome/userContent.css" ]]; then
+    cat > "$firefox_path/chrome/userContent.css" <<EOF
 @import url("./colors.css");
 
 :root {
@@ -316,14 +300,16 @@ body {
 EOF
 fi
 
-
+enable_firefox_userchrome
 
 if pgrep -x "firefox" > /dev/null; then
-    pkill -x "firefox"
+    pkill -x "firefox" > /dev/null
     sleep 2
     if pgrep -x "firefox" > /dev/null; then
-        pkill -9 -x "firefox"
+        pkill -9 -x "firefox" > /dev/null
         sleep 1
     fi
-    firefox &
+    firefox > /dev/null &
 fi
+
+success "Firefox theme updated!"
