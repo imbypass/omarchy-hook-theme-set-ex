@@ -1,6 +1,5 @@
 #!/bin/bash
 
-input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 output_file="$HOME/.config/omarchy/current/theme/vencord.theme.css"
 possible_paths=(
     "$HOME/.config/Vencord/themes"

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 new_zed_file="$HOME/.config/omarchy/current/theme/zed.json"
 
 create_dynamic_theme() {

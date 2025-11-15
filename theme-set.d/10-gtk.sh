@@ -1,14 +1,13 @@
 #!/bin/bash
 
-input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-new_gtk_file="$HOME/.config/omarchy/current/theme/gtk.css"
+output_file="$HOME/.config/omarchy/current/theme/gtk.css"
 gtk3_dir="$HOME/.config/gtk-3.0"
 gtk4_dir="$HOME/.config/gtk-4.0"
 gtk3_file="$gtk3_dir/gtk.css"
 gtk4_file="$gtk4_dir/gtk.css"
 
 create_dynamic_theme() {
-    cat > "$new_gtk_file" << EOF
+    cat > "$output_file" << EOF
     @define-color background     ${primary_background};
     @define-color foreground     ${primary_foreground};
     @define-color black          ${primary_background};
@@ -212,20 +211,20 @@ if pgrep -x "nautilus" > /dev/null 2>&1; then
     save_nautilus_locations
 fi
 
-if [ -f "$new_gtk_file" ]; then
+if [ -f "$output_file" ]; then
     if [ ! -f "$gtk3_dir/gtk.css.backup" ]; then
         cp "$gtk3_file" "$gtk3_dir/gtk.css.backup"
     fi
-    cp -f "$new_gtk_file" "$gtk3_file"
+    cp -f "$output_file" "$gtk3_file"
 
     if [ ! -f "$gtk4_dir/gtk.css.backup" ]; then
         cp "$gtk4_file" "$gtk4_dir/gtk.css.backup"
     fi
-    cp -f "$new_gtk_file" "$gtk4_file"
+    cp -f "$output_file" "$gtk4_file"
 else
     create_dynamic_theme
-    cp "$new_gtk_file" "$gtk3_file"
-    cp "$new_gtk_file" "$gtk4_file"
+    cp "$output_file" "$gtk3_file"
+    cp "$output_file" "$gtk4_file"
 fi
 
 if [ "$NAUTILUS_WAS_RUNNING" = true ]; then

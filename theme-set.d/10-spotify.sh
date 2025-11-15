@@ -1,7 +1,5 @@
 #!/bin/bash
 
-input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-
 create_spicetify_styling() {
     mkdir -p "$HOME/.config/spicetify/Themes/omarchy"
     cat > "$HOME/.config/spicetify/Themes/omarchy/user.css" << EOF

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
-
 if ! command -v firefox >/dev/null 2>&1; then
     warning "Firefox not found. Skipping.."
     exit 0
