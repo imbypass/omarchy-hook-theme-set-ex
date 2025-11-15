@@ -10,15 +10,13 @@ If they do *not* exist, a new set of each will be generated dynamically using th
 ![Preview](https://0x0.st/K_yY.png)
 
 ## Themed Apps
+- Firefox
 - Discord
 - GTK (Nautilus/Files)
-- QT6 (experimental)
 - Spotify
 - Zed
-- VSCode (experimental)
-- Cursor (experimental)
-- Windsurf (experimental)
 - Steam
+- VSCode/Cursor/Windsurf (experimental)
 
 ## Installation
 Run the following command to install the hook extension:
@@ -27,9 +25,8 @@ curl -fsSL https://imbypass.github.io/omarchy-theme-hook/install.sh | bash
 ```
 ## Requirements
 Each of these scripts will have optional requirements that are needed in order to run properly. These requirements are listed below:
-- Vesktop / Equibop / Vencord / Equicord *(if your client supports theming and isn't listed, please open an issue to get it added.)*
+- Third-party Discord client *(if your client supports theming and isn't listed, please open an issue to get it added.)*
 - Spicetify is needed to theme Spotify. *(Make sure this is installed before trying to use this.)*
-- Zed is obviously needed otherwise, there would be no way to theme it.
 
 ## FAQ
 #### My Discord isn't theming!
