@@ -7,7 +7,7 @@ omarchy-show-logo
 rm -rf /tmp/theme-hook/
 
 echo -e "Cloning Omarchy theme hook repository.."
-git clone https://github.com/imbypass/omarchy-hook-theme-set-ex.git /tmp/theme-hook > /dev/null
+git clone https://github.com/imbypass/omarchy-theme-hook.git /tmp/theme-hook > /dev/null
 
 mv -f /tmp/theme-hook/install.sh $HOME/.local/share/omarchy/bin/theme-hook-update
 chmod +x $HOME/.local/share/omarchy/bin/theme-hook-update
