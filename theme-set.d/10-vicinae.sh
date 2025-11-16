@@ -14,6 +14,7 @@ name = "Omarchy"
 description = "Follow your Omarchy system theme."
 variant = "dark"
 inherits = "vicinae-dark"
+icon = "$HOME/.local/share/omarchy/icon.png"
 
 [colors.core]
 background = "#${primary_background}"
