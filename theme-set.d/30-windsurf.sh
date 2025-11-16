@@ -1248,9 +1248,9 @@ fi
 extension_name="tintedtheming.base16-tinted-themes"
 
 install_extension() {
-    is_extension_installed=$(code --list-extensions | grep "${extension_name}")
+    is_extension_installed=$(windsurf --list-extensions | grep "${extension_name}")
     if [[ -z "$is_extension_installed" ]]; then
-        code --install-extension $extension_name
+        windsurf --install-extension $extension_name
         sleep 3
     fi
 }
