@@ -45,5 +45,7 @@ fi
 mkdir -p "$HOME/.local/share/vicinae/themes/"
 cp -p -f "$output_file" "$HOME/.local/share/vicinae/themes/omarchy.toml"
 
+vicinae theme set omarchy
+
 success "Vicinae theme updated!"
 exit 0
