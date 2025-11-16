@@ -104,7 +104,7 @@ rgb_bright_magenta=$(hex2rgb $bright_magenta)
 rgb_bright_cyan=$(hex2rgb $bright_cyan)
 rgb_bright_white=$(hex2rgb $bright_white)
 
-export -f success warning error
+export -f success warning error skipped
 export -f rgb2hex hex2rgb change_shade
 
 export primary_background primary_foreground
