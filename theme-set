@@ -112,8 +112,8 @@ export normal_black normal_red normal_green normal_yellow normal_blue normal_mag
 export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
 
 export rgb_primary_foreground rgb_primary_background
-export rgb_normal_red rgb_normal_green rgb_normal_yellow rgb_normal_blue rgb_normal_magenta rgb_normal_cyan rgb_normal_white
-export rgb_bright_red rgb_bright_green rgb_bright_yellow rgb_bright_blue rgb_bright_magenta rgb_bright_cyan rgb_bright_white
+export rgb_normal_black rgb_normal_red rgb_normal_green rgb_normal_yellow rgb_normal_blue rgb_normal_magenta rgb_normal_cyan rgb_normal_white
+export rgb_bright_black rgb_bright_red rgb_bright_green rgb_bright_yellow rgb_bright_blue rgb_bright_magenta rgb_bright_cyan rgb_bright_white
 
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
   for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
