@@ -36,6 +36,8 @@ error() {
     exit 1
 }
 
+export -f success warning error skipped
+
 hex2rgb() {
     hex_input=$1
     r=$((16#${hex_input:0:2}))
@@ -66,6 +68,8 @@ change_shade() {
     rgb2hex $r $g $b
 }
 
+export -f rgb2hex hex2rgb change_shade
+
 primary_foreground=$(extract_from_section "colors.primary" "foreground")
 primary_background=$(extract_from_section "colors.primary" "background")
 normal_black=$(extract_from_section "colors.normal" "black")
@@ -85,6 +89,10 @@ bright_magenta=$(extract_from_section "colors.bright" "magenta")
 bright_cyan=$(extract_from_section "colors.bright" "cyan")
 bright_white=$(extract_from_section "colors.bright" "white")
 
+export primary_background primary_foreground
+export normal_black normal_red normal_green normal_yellow normal_blue normal_magenta normal_cyan normal_white
+export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
+
 rgb_primary_foreground=$(hex2rgb $primary_foreground)
 rgb_primary_background=$(hex2rgb $primary_background)
 rgb_normal_black=$(hex2rgb $normal_black)
@@ -103,13 +111,6 @@ rgb_bright_blue=$(hex2rgb $bright_blue)
 rgb_bright_magenta=$(hex2rgb $bright_magenta)
 rgb_bright_cyan=$(hex2rgb $bright_cyan)
 rgb_bright_white=$(hex2rgb $bright_white)
-
-export -f success warning error skipped
-export -f rgb2hex hex2rgb change_shade
-
-export primary_background primary_foreground
-export normal_black normal_red normal_green normal_yellow normal_blue normal_magenta normal_cyan normal_white
-export bright_black bright_red bright_green bright_yellow bright_blue bright_magenta bright_cyan bright_white
 
 export rgb_primary_foreground rgb_primary_background
 export rgb_normal_black rgb_normal_red rgb_normal_green rgb_normal_yellow rgb_normal_blue rgb_normal_magenta rgb_normal_cyan rgb_normal_white
