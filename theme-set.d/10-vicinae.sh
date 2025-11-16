@@ -22,6 +22,14 @@ secondary_background = "#$(change_shade $primary_background 5)"
 border = "#${bright_black}"
 accent = "#${normal_yellow}"
 
+[colors.list.item.hover]
+background = "#$(change_shade $primary_background 10)"
+foreground = "#${primary_foreground}"
+
+[colors.list.item.selection]
+background = "#$(change_shade $primary_background 15)"
+foreground = "#${primary_foreground}"
+
 [colors.accents]
 blue = "#${normal_blue}"
 green = "#${normal_green}"
