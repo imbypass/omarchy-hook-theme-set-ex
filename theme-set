@@ -2,6 +2,22 @@
 
 input_file="$HOME/.config/omarchy/current/theme/alacritty.toml"
 
+extract_from_section() {
+    local section="$1"
+    local color_name="$2"
+    awk -v section="[$section]" -v color="$color_name" '
+        $0 == section { in_section=1; next }
+        /^\[/ { in_section=0 }
+        in_section && $1 == color {
+            if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
+                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
+                print hex_part
+                exit
+            }
+        }
+    ' "$input_file"
+}
+
 success() {
     echo -e "\e[32m[SUCCESS]\e[0m $1"
 }
@@ -48,22 +64,6 @@ change_shade() {
     b=$((b + shade))
 
     rgb2hex $r $g $b
-}
-
-extract_from_section() {
-    local section="$1"
-    local color_name="$2"
-    awk -v section="[$section]" -v color="$color_name" '
-        $0 == section { in_section=1; next }
-        /^\[/ { in_section=0 }
-        in_section && $1 == color {
-            if (match($0, /(#|0x)([0-9a-fA-F]{6})/)) {
-                hex_part = substr($0, RSTART + (substr($0, RSTART, 2) == "0x" ? 2 : 1), 6)
-                print hex_part
-                exit
-            }
-        }
-    ' "$input_file"
 }
 
 primary_foreground=$(extract_from_section "colors.primary" "foreground")
