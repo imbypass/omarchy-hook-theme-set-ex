@@ -53,7 +53,10 @@ if [[ ! -f "$output_file" ]]; then
 }
 EOF
 fi
-cp "$output_file" "$default_profile/chrome/colors.css"
+
+if [[ -d "$default_profile" ]]; then
+    cp "$output_file" "$default_profile/chrome/colors.css"
+fi
 
 if [[ ! -f "$default_profile/chrome/userChrome.css" ]]; then
     cat > "$default_profile/chrome/userChrome.css" << EOF
