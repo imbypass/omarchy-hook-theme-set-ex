@@ -32,6 +32,7 @@ The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarch
 - VS Code
 - Windsurf
 - Zed
+- Zen Browser (experimental - requires manual enabling of legacy userchrome styling)
 
 ## Installing
 You can install the theme hook by running the following command:
