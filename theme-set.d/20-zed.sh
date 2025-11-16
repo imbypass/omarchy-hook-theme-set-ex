@@ -13,47 +13,47 @@ create_dynamic_theme() {
           "name": "Omarchy",
           "appearance": "dark",
           "style": {
-            "background": "#${background}90",
-            "editor.background": "#${background}90",
-            "editor.foreground": "#${foreground}",
-            "text": "#${foreground}",
-            "text.muted": "#${foreground}70",
-            "text.ignored": "#${foreground}40",
-            "text.placeholder": "#${foreground}50",
-            "ignored": "#${foreground}30",
-            "element.hover": "#${foreground}30",
+            "background": "#${primary_background}90",
+            "editor.background": "#${primary_background}90",
+            "editor.foreground": "#${primary_foreground}",
+            "text": "#${primary_foreground}",
+            "text.muted": "#${primary_foreground}70",
+            "text.ignored": "#${primary_foreground}40",
+            "text.placeholder": "#${primary_foreground}50",
+            "ignored": "#${primary_foreground}30",
+            "element.hover": "#${primary_foreground}30",
             "ghost_element.hover": "#${bright_black}30",
             "ghost_element.selected": "#${bright_black}30",
             "ghost_element.active": "#${bright_black}60",
-            "border": "#${black}",
+            "border": "#${normal_black}",
             "editor.highlighted_line.background": "#${bright_black}10",
             "editor.active_line.background": "#${bright_black}10",
-            "panel.background": "#${black}90",
-            "title_bar.background": "#${black}90",
-            "title_bar.inactive_background": "#${black}90",
-            "status_bar.background": "#${black}90",
-            "drop_target.background": "#${black}90",
-            "elevated_surface.background": "#${black}",
-            "toolbar.background": "#${black}90",
-            "tab_bar.background": "#${black}90",
-            "tab.inactive_background": "#${black}90",
+            "panel.background": "#${normal_black}90",
+            "title_bar.background": "#${normal_black}90",
+            "title_bar.inactive_background": "#${normal_black}90",
+            "status_bar.background": "#${normal_black}90",
+            "drop_target.background": "#${normal_black}90",
+            "elevated_surface.background": "#${normal_black}",
+            "toolbar.background": "#${normal_black}90",
+            "tab_bar.background": "#${normal_black}90",
+            "tab.inactive_background": "#${normal_black}90",
             "tab.active_background": "#${bright_black}30",
             "scrollbar.track.background": "transparent",
-            "scrollbar.track.border": "#${black}",
-            "scrollbar.thumb.background": "#${foreground}",
-            "editor.gutter.background": "#${black}90",
-            "terminal.background": "#${black}10",
-            "terminal.foreground": "#${foreground}",
-            "terminal.dim_foreground": "#${foreground}",
-            "terminal.bright_foreground": "#${foreground}",
-            "terminal.ansi.black": "#${black}",
-            "terminal.ansi.red": "#${red}",
-            "terminal.ansi.green": "#${green}",
-            "terminal.ansi.yellow": "#${yellow}",
-            "terminal.ansi.blue": "#${blue}",
-            "terminal.ansi.magenta": "#${magenta}",
-            "terminal.ansi.cyan": "#${cyan}",
-            "terminal.ansi.white": "#${white}",
+            "scrollbar.track.border": "#${normal_black}",
+            "scrollbar.thumb.background": "#${primary_foreground}",
+            "editor.gutter.background": "#${normal_black}90",
+            "terminal.background": "#${normal_black}10",
+            "terminal.foreground": "#${primary_foreground}",
+            "terminal.dim_foreground": "#${primary_foreground}",
+            "terminal.bright_foreground": "#${primary_foreground}",
+            "terminal.ansi.black": "#${normal_black}",
+            "terminal.ansi.red": "#${normal_red}",
+            "terminal.ansi.green": "#${normal_green}",
+            "terminal.ansi.yellow": "#${normal_yellow}",
+            "terminal.ansi.blue": "#${normal_blue}",
+            "terminal.ansi.magenta": "#${normal_magenta}",
+            "terminal.ansi.cyan": "#${normal_cyan}",
+            "terminal.ansi.white": "#${normal_white}",
             "terminal.ansi.bright_black": "#${bright_black}",
             "terminal.ansi.bright_red": "#${bright_red}",
             "terminal.ansi.bright_green": "#${bright_green}",
@@ -62,13 +62,13 @@ create_dynamic_theme() {
             "terminal.ansi.bright_magenta": "#${bright_magenta}",
             "terminal.ansi.bright_cyan": "#${bright_cyan}",
             "terminal.ansi.bright_white": "#${bright_white}",
-            "modified": "#${red}",
+            "modified": "#${normal_red}",
             "syntax": {
               "attribute": {
                 "color": "#${normal_white}"
               },
               "boolean": {
-                "color": "#${green}"
+                "color": "#${normal_green}"
               },
               "comment": {
                 "color": "#${bright_black}"
@@ -83,26 +83,26 @@ create_dynamic_theme() {
                 "color": "#${bright_cyan}"
               },
               "keyword": {
-                "color": "#${blue}"
+                "color": "#${normal_blue}"
               },
               "number": {
-                "color": "#${magenta}"
+                "color": "#${normal_magenta}"
               },
               "operator": {
-                "color": "#${blue}"
+                "color": "#${normal_blue}"
               },
               "string": {
-                "color": "#${red}"
+                "color": "#${normal_red}"
               },
               "variable": {
-                "color": "#${green}"
+                "color": "#${normal_green}"
               }
             },
             "players": [
               {
-                "cursor": "#${foreground}",
-                "background": "#${black}",
-                "selection": "#${foreground}30"
+                "cursor": "#${primary_foreground}",
+                "background": "#${normal_black}",
+                "selection": "#${primary_foreground}30"
               }
             ]
           }
