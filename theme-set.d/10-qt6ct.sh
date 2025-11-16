@@ -3,8 +3,7 @@
 new_qt_file="$HOME/.config/omarchy/current/theme/qt6ct.conf"
 
 if ! command -v qt6ct >/dev/null 2>&1; then
-    warning "Qt6ct not found. Skipping.."
-    exit 0
+    skipped "Qt6ct"
 fi
 
 base00=$normal_black
@@ -36,4 +35,5 @@ fi
 mkdir -p "$HOME/.config/qt6ct/colors"
 cp -p -f "$new_qt_file" "$HOME/.config/qt6ct/colors/omarchy.conf"
 
+success "Qt6 theme updated!"
 exit 0

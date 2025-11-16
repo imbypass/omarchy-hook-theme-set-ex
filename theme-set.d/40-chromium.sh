@@ -7,3 +7,4 @@ if [[ ! -f "$output_file" ]]; then
 $(hex2rgb $primary_background)
 EOF
 fi
+exit 0

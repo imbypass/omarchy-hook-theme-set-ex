@@ -84,3 +84,4 @@ check_for_theme() {
 
 check_for_theme
 success "Discord theme updated!"
+exit 0

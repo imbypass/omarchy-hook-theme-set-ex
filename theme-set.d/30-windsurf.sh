@@ -3,8 +3,7 @@
 output_file="$HOME/.config/omarchy/current/theme/vscode_colors.json"
 
 if ! command -v windsurf >/dev/null 2>&1; then
-    warning "Windsurf not found. Skipping.."
-    exit 0
+    skipped "Windsurf"
 fi
 
 if [[ ! -f "$output_file" ]]; then
@@ -1287,4 +1286,4 @@ install_location="$install_path/themes/base16/omarchy.json"
 cp "$output_file" "$install_location"
 
 success "Windsurf theme updated!"
-exit
+exit 0

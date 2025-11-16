@@ -3,8 +3,7 @@
 output_file="$HOME/.config/omarchy/current/theme/firefox.css"
 
 if ! command -v firefox >/dev/null 2>&1; then
-    warning "Firefox not found. Skipping.."
-    exit 0
+    skipped "Firefox"
 fi
 
 find_default_profile() {
@@ -313,3 +312,4 @@ if pgrep -x "firefox" > /dev/null; then
 fi
 
 success "Firefox theme updated!"
+exit 0

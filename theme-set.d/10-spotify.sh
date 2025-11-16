@@ -81,8 +81,7 @@ EOF
 }
 
 if ! command -v spicetify >/dev/null 2>&1; then
-    warning "Spicetify not found. Skipping.."
-    exit 0
+    skipped "Spicetify"
 fi
 
 spotify_was_running=false
@@ -112,4 +111,4 @@ else
 fi
 
 success "Spotify theme updated!"
-exit
+exit 0

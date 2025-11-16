@@ -3,8 +3,7 @@
 output_file="$HOME/.config/omarchy/current/theme/vscode_colors.json"
 
 if ! command -v code >/dev/null 2>&1; then
-    warning "VS Code not found. Skipping.."
-    exit 0
+    skipped "VS Code"
 fi
 
 if [[ ! -f "$output_file" ]]; then
@@ -1285,4 +1284,4 @@ install_location="$install_path/themes/base16/omarchy.json"
 cp "$output_file" "$install_location"
 
 success "VS Code theme updated!"
-exit
+exit 0

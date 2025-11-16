@@ -6,6 +6,11 @@ success() {
     echo -e "\e[32m[SUCCESS]\e[0m $1"
 }
 
+skipped() {
+    echo -e "\033[0;34m[SKIPPED]\e[0m $1 not found. Skipping.."
+    exit 0
+}
+
 warning() {
     echo -e "\033[0;33m[WARNING]\e[0m $1"
 }

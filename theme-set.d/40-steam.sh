@@ -3,13 +3,11 @@
 output_file="$HOME/.config/omarchy/current/theme/steam.css"
 
 if ! command -v steam >/dev/null 2>&1; then
-    warning "Steam not found. Skipping.."
-    exit 0
+    skipped "Steam"
 fi
 
 if ! command -v python >/dev/null 2>&1; then
-    warning "Python not found. Skipping.."
-    exit 0
+    skipped "Python 3"
 fi
 
 if [[ ! -f "$output_file" ]]; then
@@ -105,4 +103,4 @@ cd $adwaita_location && ./install.py \
     --extras library/hide_whats_new > /dev/null 2>&1
 
 success "Steam theme updated!"
-exit
+exit 0

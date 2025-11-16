@@ -113,8 +113,7 @@ EOF
 }
 
 if ! command -v zeditor >/dev/null 2>&1; then
-    warning "Zed not found. Skipping.."
-    exit 0
+    skipped "Zed"
 fi
 
 mkdir -p "$HOME/.config/zed/themes"
