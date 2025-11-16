@@ -49,15 +49,19 @@ theme-hook-update
 ## FAQ
 
 #### I installed the hook, but none of my apps are theming!
-1. The theme hook will generate and install themes, but not apply them.
-2. You need to manually set the theme to "Omarchy" one time for each app that supports theming.
+1. The theme hook will generate and install themes, but cannot apply all of them.
+2. You may need to manually set the theme to "Omarchy" one time for each app that supports theming.
+
+#### My Firefox/Zen Browser isn't theming!
+-  Firefox and Zen Browser may require manual enabling of legacy userchrome styling.
+-  To do this, open the browser, go to `about:config`, search for `toolkit.legacyUserProfileCustomizations.stylesheets`, and set it to `true`.
 
 #### My Discord isn't theming!
 1. Make sure you are using a third-party Discord client, like Vesktop or Equibop.
 2. Apply your desired theme in Omarchy.
 3. Enable the Omarchy theme in Discord.
 
-#### Spotify says it themed, but nothing changed!
+#### My Spotify isn't theming!
 1. Make sure that you *properly* installed Spicetify, including any permission edits that may need to be made for Linux systems.
 2. See a [[note for Linux users]](https://spicetify.app/docs/advanced-usage/installation#note-for-linux-users).
 3. Apply your desired theme in Omarchy.
