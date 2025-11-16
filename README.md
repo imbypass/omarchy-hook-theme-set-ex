@@ -3,7 +3,7 @@
 
 # Omarchy Theme Hook
    
-   ![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge)
+   ![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11)
    ![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge)
    ![GitHub Last Commit](https://img.shields.io/github/last-commit/imbypass/omarchy-theme-hook?style=for-the-badge)
 
@@ -18,13 +18,17 @@
 The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarchy theme to other apps. It will check your Omarchy theme for the existence of any extended theme files and will install them automatically for you when a theme is applied. If a theme is applied that contains extended theme files, they will be copied to their proper folders. If the theme does *not* contain any extended theme files, a new set of each will be generated dynamically using the theme's Alacritty config and copied to their proper folders.
 
 ## Themed Apps
-- Firefox
+- Cursor
 - Discord
+- Firefox
 - GTK (Nautilus/Files)
+- QT6
 - Spotify
-- Zed
 - Steam
-- VSCode/Cursor/Windsurf (experimental)
+- Vicinae
+- VS Code
+- Windsurf
+- Zed
 
 ## Installing
 You can install the theme hook by running the following command:
