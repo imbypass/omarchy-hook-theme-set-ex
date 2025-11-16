@@ -3,12 +3,12 @@
 
 # Omarchy Theme Hook
    
-   [![Themed Apps](https://img.shields.io/badge/themed_apps-12-blue?style=for-the-badge&labelColor=0C0D11)](https://github.com/imbypass/omarchy-theme-hook/tree/main/theme-set.d)
-   [![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11)](https://github.com/imbypass/omarchy-theme-hook/stargazers)
-   [![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11)](https://github.com/imbypass/omarchy-theme-hook/issues)
-   [![GitHub Last Commit](https://img.shields.io/github/last-commit/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11)](https://github.com/imbypass/omarchy-theme-hook/commits/main/)
+[![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=75BD7D)](https://github.com/imbypass/omarchy-theme-hook/issues)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=75BD7D)](https://github.com/imbypass/omarchy-theme-hook/commits/main/)
+[![Themed Apps](https://img.shields.io/badge/themed_apps-12-blue?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/tree/main/theme-set.d)
 
-   **A lightweight, clean solution to extending your Omarchy theme to other apps.**
+**A lightweight, clean solution to extending your Omarchy theme to other apps.**
 
 </div>
 
