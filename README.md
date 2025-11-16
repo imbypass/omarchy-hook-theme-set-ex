@@ -1,6 +1,8 @@
 
 <div align="center">
 
+![Theme Hook Logo](assets/logo.png)
+
 # Omarchy Theme Hook
    
 [![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/stargazers)
