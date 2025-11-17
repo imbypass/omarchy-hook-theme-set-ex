@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_file="$HOME/.config/omarchy/current/theme/cursor_colors.json"
+output_file="$HOME/.config/omarchy/current/theme/vscode_colors.json"
 
 if ! command -v cursor >/dev/null 2>&1; then
     skipped "Cursor"
