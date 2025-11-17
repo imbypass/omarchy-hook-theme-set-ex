@@ -15,7 +15,7 @@
 </div>
 
 ## Preview
-![Preview](https://0x0.st/K_yY.png)
+![Preview](assets/preview.png)
 
 ## Overview
 The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarchy theme to other apps. It will check your Omarchy theme for the existence of any extended theme files and will install them automatically for you when a theme is applied. If a theme is applied that contains extended theme files, they will be copied to their proper folders. If the theme does *not* contain any extended theme files, a new set of each will be generated dynamically using the theme's Alacritty config and copied to their proper folders.
