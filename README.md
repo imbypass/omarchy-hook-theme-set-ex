@@ -25,6 +25,7 @@ The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarch
 - QT6
 - Spotify
 - Steam
+- Tmux
 - Vicinae
 - VS Code
 - Windsurf
@@ -43,6 +44,12 @@ theme-hook-update
 ```
 
 ## FAQ
+
+#### My tmux isn't theming!
+The tmux hook will auto-add theming to your existing `~/.tmux.conf`. If you don't have a tmux config yet, see `tmux.conf.example` for a minimal starter config, or add this line to your config:
+```tmux
+source-file ~/.config/tmux/theme-colors.conf
+```
 
 #### I installed the hook, but none of my apps are theming!
 1. The theme hook will generate and install themes, but not apply them.

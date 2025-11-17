@@ -1,0 +1,46 @@
+# Minimal tmux.conf for Omarchy theme integration
+# Copy this to ~/.tmux.conf or integrate the source line into your existing config
+
+# Enable 256 color support
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc"
+
+# Source auto-generated theme colors (updated by Omarchy theme hook)
+source-file ~/.config/tmux/theme-colors.conf
+
+# Basic keybindings
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+# Reload config with prefix + r
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
+
+# Split panes with | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# Switch panes with vim-like keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Enable mouse support
+set -g mouse on
+
+# Start window numbering at 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Status bar position
+set -g status-position bottom
+set -g status-justify left
+
+# Status bar content (colors come from theme-colors.conf)
+set -g status-left ''
+set -g status-right '#[bold] %H:%M '
+set -g status-left-length 20
+set -g status-right-length 50
