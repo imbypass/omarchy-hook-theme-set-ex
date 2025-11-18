@@ -49,7 +49,7 @@ file_panel_item_selected_fg = '#${bright_black}'
 file_panel_item_selected_bg = '#${primary_background}'
 
 # ========= Sidebar Special Items =========
-sidebar_title = '#${bright_black}'
+sidebar_title = '#${bright_white}'
 sidebar_item_selected_fg = '#${bright_black}'
 sidebar_item_selected_bg = '#${primary_background}'
 sidebar_divider = '#${normal_white}'
