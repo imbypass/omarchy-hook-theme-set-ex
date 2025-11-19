@@ -8,7 +8,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=75BD7D)](https://github.com/imbypass/omarchy-theme-hook/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=75BD7D)](https://github.com/imbypass/omarchy-theme-hook/commits/main/)
-[![Themed Apps](https://img.shields.io/badge/themed_apps-13-blue?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/tree/main/theme-set.d)
+[![Themed Apps](https://img.shields.io/badge/themed_apps-22-blue?style=for-the-badge&labelColor=0C0D11&color=7AAAFF)](https://github.com/imbypass/omarchy-theme-hook/tree/main/theme-set.d)
 
 **A lightweight, clean solution to extending your Omarchy theme to other apps.**
 
@@ -19,21 +19,6 @@
 
 ## Overview
 The Omarchy Theme Hook is a lightweight, clean solution to extending your Omarchy theme to other apps. It will check your Omarchy theme for the existence of any extended theme files and will install them automatically for you when a theme is applied. If a theme is applied that contains extended theme files, they will be copied to their proper folders. If the theme does *not* contain any extended theme files, a new set of each will be generated dynamically using the theme's Alacritty config and copied to their proper folders.
-
-## Themed Apps
-- Cursor
-- Discord
-- Firefox
-- GTK (Nautilus/Files)
-- QT6
-- Spotify
-- Steam
-- Superfile
-- Vicinae
-- VS Code
-- Windsurf
-- Zed
-- Zen Browser (experimental - requires manual enabling of legacy userchrome styling)
 
 ## Installing
 You can install the theme hook by running the following command:
@@ -46,6 +31,30 @@ You can update the theme hook by running the following command:
 ```
 theme-hook-update
 ```
+
+## Themed Apps
+- Alacritty
+- Chromium
+- Cursor
+- Discord
+- Firefox
+- Ghostty
+- GTK (Nautilus/Files)
+- Hyprland
+- Kitty
+- Mako
+- QT6
+- Spotify
+- Steam
+- Superfile
+- SwayOSD
+- Vicinae
+- VS Code
+- Walker
+- Waybar
+- Windsurf
+- Zed
+- Zen Browser (experimental - requires manual enabling of legacy userchrome styling)
 
 ## FAQ
 
