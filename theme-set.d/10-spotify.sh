@@ -3,11 +3,6 @@
 create_spicetify_styling() {
     mkdir -p "$HOME/.config/spicetify/Themes/omarchy"
     cat > "$HOME/.config/spicetify/Themes/omarchy/user.css" << EOF
-*,
-html,
-body {
-    font-family: "$(omarchy-font-current)" !important;
-}
 :root,
 .encore-dark-theme,
 .encore-base-set,
