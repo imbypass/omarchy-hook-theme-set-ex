@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! command -v cava >/dev/null 2>&1; then
-    skipped "CAVA"
+    skipped "Cava"
 fi
 
 # Generate theme file
@@ -34,5 +34,5 @@ if pgrep -x cava >/dev/null 2>&1; then
     ( pkill -USR2 cava ) >/dev/null 2>&1 &
 fi
 
-success "CAVA theme synced"
+success "Cava theme updated!"
 exit 0
