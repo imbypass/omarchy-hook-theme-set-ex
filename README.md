@@ -1,11 +1,9 @@
 
 <div align="center">
 
-![Theme Hook Logo](assets/logo.png)
+![Preview](assets/preview.png)
 
 # Omarchy Theme Hook
-
-![Preview](assets/preview.png)
    
 [![Themed Apps](https://img.shields.io/badge/themed_apps-23-blue?style=for-the-badge&labelColor=0C0D11&color=A5CAB8)](https://github.com/imbypass/omarchy-theme-hook/tree/main/theme-set.d)
 [![GitHub Issues](https://img.shields.io/github/issues/imbypass/omarchy-theme-hook?style=for-the-badge&labelColor=0C0D11&color=EB7A73)](https://github.com/imbypass/omarchy-theme-hook/issues)
