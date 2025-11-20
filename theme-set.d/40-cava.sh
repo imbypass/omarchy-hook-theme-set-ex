@@ -4,13 +4,10 @@ if ! command -v cava >/dev/null 2>&1; then
     skipped "Cava"
 fi
 
-# Generate theme file
-theme_dir="$HOME/.config/cava/themes"
-theme_file="$theme_dir/omarchy"
+theme_template="$HOME/.config/omarchy/current/theme/cava_theme"
 
-mkdir -p "$theme_dir"
-
-cat > "$theme_file" << EOF
+if [ ! -f "$theme_template" ]; then
+    cat > "$theme_template" << EOF
 [color]
 gradient = 1
 gradient_count = 8
@@ -23,8 +20,12 @@ gradient_color_6 = '#${bright_cyan:-${normal_cyan:-${primary_foreground}}}'
 gradient_color_7 = '#${bright_magenta:-${normal_magenta:-${primary_foreground}}}'
 gradient_color_8 = '#${normal_cyan:-${primary_foreground}}'
 EOF
+fi
 
-# Ensure main config uses omarchy theme
+theme_dir="$HOME/.config/cava/themes"
+mkdir -p "$theme_dir"
+cp -f "$theme_template" "$theme_dir/omarchy"
+
 config_file="$HOME/.config/cava/config"
 if [ -f "$config_file" ] && ! grep -q "theme = 'omarchy'" "$config_file"; then
     sed -i "/^\[color\]/a theme = 'omarchy'" "$config_file"
