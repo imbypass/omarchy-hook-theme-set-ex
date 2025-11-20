@@ -41,21 +41,6 @@ create_dynamic_theme() {
         --color13: #${normal_blue};
         --color14: #${normal_magenta};
         --color15: #${normal_yellow};
-
-        --font: "$(omarchy-font-current)";
-        --font-code: var(--font);
-        --font-primary: var(--font);
-        --font-display: var(--font);
-        --font-heading: var(--font);
-
-        --font-weight-light: 500;
-        --font-weight-normal: 550;
-
-        --font-weight-normal: 600;
-        --font-weight-light: 500;
-        --font-weight-medium: 600;
-        --font-weight-semibold: 800;
-        --font-weight-bold: 900;
     }
 EOF
 
