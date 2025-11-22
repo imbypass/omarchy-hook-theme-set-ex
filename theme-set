@@ -68,15 +68,11 @@ change_shade() {
     rgb2hex $r $g $b
 }
 
-RESTART_SCRIPTS=()
-RESTART_FILE=$(mktemp)
-export RESTART_FILE
+restart_scripts=()
+restart_file=$(mktemp)
+export restart_file
 require_restart() {
-    if [[ -z "$1" ]]; then
-        echo "${BASH_SOURCE[1]##*/}" >> "$RESTART_FILE"
-    else
-        echo "$1" >> "$RESTART_FILE"
-    fi
+    echo "$1" >> "$restart_file"
 }
 
 export -f rgb2hex hex2rgb change_shade require_restart
@@ -136,19 +132,24 @@ if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
         fi
     done
 
-    if [[ -f "$RESTART_FILE" ]]; then
-        mapfile -t RESTART_SCRIPTS < "$RESTART_FILE"
-        rm "$RESTART_FILE"
+    if [[ -f "$restart_file" ]]; then
+        mapfile -t restart_scripts < "$restart_file"
+        rm "$restart_file"
     fi
-    if [[ ${#RESTART_SCRIPTS[@]} -gt 0 ]]; then
-        apps=""
-        for app in "${RESTART_SCRIPTS[@]}"; do
-            app=$(basename $app)
-            app=${app#*-}
-            app=${app%.sh}
-            app=${app^}
-            apps+="- $app"$'\n'
+    if [[ ${#restart_scripts[@]} -gt 0 ]]; then
+        running=()
+        for app in "${restart_scripts[@]}"; do
+            echo $app
+            if pgrep -x "$app" > /dev/null; then
+                running+=("${app^}")
+            fi
         done
-        notify-send "Omarchy Theme Hook" "The following apps require a restart to apply theme:\n\n$apps"
+        if [[ ${#running[@]} -gt 0 ]]; then
+            apps=""
+            for app in "${running[@]}"; do
+                apps+="- $app"$'\n'
+            done
+            notify-send "Omarchy Theme Hook" "The following apps require a restart to apply theme:\n\n$apps"
+        fi
     fi
 fi

@@ -128,6 +128,6 @@ cd $adwaita_location && ./install.py \
     --color-theme omarchy \
     --extras library/hide_whats_new > /dev/null 2>&1
 
-require_restart
+require_restart "steam"
 success "Steam theme updated!"
 exit 0

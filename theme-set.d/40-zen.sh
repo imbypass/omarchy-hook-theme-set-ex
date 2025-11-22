@@ -311,6 +311,6 @@ if pgrep -x "zen-browser" > /dev/null; then
     zen-browser > /dev/null &
 fi
 
-require_restart "Zen Browser"
+require_restart "zen-browser"
 success "Zen Browser theme updated!"
 exit 0

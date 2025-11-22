@@ -301,6 +301,6 @@ body {
 EOF
 fi
 
-require_restart
+require_restart "firefox"
 success "Firefox theme updated!"
 exit 0
