@@ -16,3 +16,5 @@ max-icon-size=32
 outer-margin=5
 EOF
 fi
+
+makoctl reload

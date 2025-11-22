@@ -68,7 +68,18 @@ change_shade() {
     rgb2hex $r $g $b
 }
 
-export -f rgb2hex hex2rgb change_shade
+RESTART_SCRIPTS=()
+RESTART_FILE=$(mktemp)
+export RESTART_FILE
+require_restart() {
+    if [[ -z "$1" ]]; then
+        echo "${BASH_SOURCE[1]##*/}" >> "$RESTART_FILE"
+    else
+        echo "$1" >> "$RESTART_FILE"
+    fi
+}
+
+export -f rgb2hex hex2rgb change_shade require_restart
 
 primary_foreground=$(extract_from_section "colors.primary" "foreground")
 primary_background=$(extract_from_section "colors.primary" "background")
@@ -117,11 +128,27 @@ export rgb_normal_black rgb_normal_red rgb_normal_green rgb_normal_yellow rgb_no
 export rgb_bright_black rgb_bright_red rgb_bright_green rgb_bright_yellow rgb_bright_blue rgb_bright_magenta rgb_bright_cyan rgb_bright_white
 
 if [[ -d ~/.config/omarchy/hooks/theme-set.d ]]; then
-  for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
-    if [[ -f "$hook" && -x "$hook" ]]; then
-      if ! "$hook" "$@"; then
-          error "Hook $(basename "$hook") failed!" >&2
-      fi
+    for hook in ~/.config/omarchy/hooks/theme-set.d/*.sh; do
+        if [[ -f "$hook" && -x "$hook" ]]; then
+            if ! "$hook" "$@"; then
+                error "Hook $(basename "$hook") failed!" >&2
+            fi
+        fi
+    done
+
+    if [[ -f "$RESTART_FILE" ]]; then
+        mapfile -t RESTART_SCRIPTS < "$RESTART_FILE"
+        rm "$RESTART_FILE"
     fi
-  done
+    if [[ ${#RESTART_SCRIPTS[@]} -gt 0 ]]; then
+        apps=""
+        for app in "${RESTART_SCRIPTS[@]}"; do
+            app=$(basename $app)
+            app=${app#*-}
+            app=${app%.sh}
+            app=${app^}
+            apps+="- $app"$'\n'
+        done
+        notify-send "Omarchy Theme Hook" "The following apps require a restart to apply theme:\n\n$apps"
+    fi
 fi

@@ -14,3 +14,5 @@ general {
 }
 EOF
 fi
+
+hyprctl reload >/dev/null 2>&1

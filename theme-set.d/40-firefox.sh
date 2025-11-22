@@ -301,15 +301,6 @@ body {
 EOF
 fi
 
-if pgrep -x "firefox" > /dev/null; then
-    pkill -x "firefox" > /dev/null
-    sleep 2
-    if pgrep -x "firefox" > /dev/null; then
-        pkill -9 -x "firefox" > /dev/null
-        sleep 1
-    fi
-    firefox > /dev/null &
-fi
-
+require_restart
 success "Firefox theme updated!"
 exit 0

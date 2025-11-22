@@ -13,3 +13,5 @@ if [[ ! -f "$output_file" ]]; then
 @define-color background #${primary_background};
 EOF
 fi
+
+omarchy-restart-walker

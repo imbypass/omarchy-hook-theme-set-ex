@@ -65,5 +65,6 @@ fi
 mkdir -p "$HOME/.config/superfile/theme/"
 cp -p -f "$output_file" "$HOME/.config/superfile/theme/omarchy.toml"
 
+require_restart
 success "Superfile theme updated!"
 exit 0
