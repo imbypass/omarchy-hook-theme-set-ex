@@ -1281,5 +1281,6 @@ modify_extension_manifest
 install_location="$install_path/themes/base16/omarchy.json"
 cp "$output_file" "$install_location"
 
+require_restart "cursor"
 success "Cursor theme updated!"
 exit 0
